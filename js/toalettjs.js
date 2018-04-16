@@ -1,4 +1,4 @@
-var url = "https://hotell.difi.no/api/json/bergen/dokart?";
+
 var toaletter;
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(){
@@ -12,7 +12,7 @@ xhr.onreadystatechange = function(){
 		}
 	}
 }
-xhr.open("GET", url);
+xhr.open("GET","https://hotell.difi.no/api/json/bergen/dokart?");
 xhr.send();
 
 
@@ -60,24 +60,7 @@ function initialize() {
 
 
 
-/*function toalettListe(){
-  var liste = document.getElementById("liste");
-  liste.innerHTML ="";
-for (var i = 0; i < toaletter.length; i++){
-  liste.innerHTML += "<ul>" + (i+1) + ". " + toaletter[i].plassering + "</ul>"
-} */
 
-}
-/*
-function checkboxToggle(){
-	var liste = document.getElementById("checkbox");
-	if (liste.style.display === "none"){
-		liste.style.display = "flex";
-	}
-	else {
-		liste.style.display = "none";
-	}
-}
 
 /*
 	Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
@@ -121,4 +104,5 @@ function checkboxSøk(){
 		liste.innerHTML = "Beklager, ingen treff";
 	}
 
+}
 }
