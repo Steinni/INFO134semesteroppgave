@@ -1,3 +1,4 @@
+var url = "https://hotell.difi.no/api/json/bergen/dokart?";
 var toaletter;
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(){
@@ -11,7 +12,7 @@ xhr.onreadystatechange = function(){
 		}
 	}
 }
-xhr.open("GET", "https://hotell.difi.no/api/json/bergen/dokart?");
+xhr.open("GET", url);
 xhr.send();
 
 
@@ -76,7 +77,7 @@ function checkboxToggle(){
 	else {
 		liste.style.display = "none";
 	}
-}  
+}
 
 /*
 	Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
