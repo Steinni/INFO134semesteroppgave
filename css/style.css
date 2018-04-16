@@ -42,7 +42,7 @@ body {
 
 #listebakgrunn {
   display: flex;
-  flex-direction: row;
+  flex-direction:  column;
 
 }
 
