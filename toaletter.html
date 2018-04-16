@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Toaletter i Bergen</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script type="text/javascript" src="js/toalettjs.js"></script>
-  </head>
-  <body onload="initialize();">
-    <div class="topnav">
-      <a class="active" href="index.html">Forside</a>
-      <a href="toaletter.html">Toaletter</a>
-      <a href="lekeplasser.html">Lekeplasser</a>
-    </div>
 
-    <div id="listebakgrunn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Toaletter i Bergen</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/toalettjs.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjM2k_K1AyHUHMTfL_lRaj0gcAG3tHssQ&callback=initMap"></script>
+</head>
 
-       <div id="listebakgrunn2">
-          <h2>Liste over toaletter i Bergen</h2>
-          <div class="søkstyle">
-             <input type="text" id="søk" placeholder="søk her..." >
-             <button type="submit" id="søkKnapp" onclick="søkToalett();">Søk</button>
+<body onload="initialize();">
+  <div class="topnav">
+    <a class="active" href="index.html">Forside</a>
+    <a href="toaletter.html">Toaletter</a>
+    <a href="lekeplasser.html">Lekeplasser</a>
+  </div>
+
+  <div id="listebakgrunn">
+
+    <div id="listebakgrunn2">
+      <h2>Liste over toaletter i Bergen</h2>
+      <div class="søkstyle">
+        <input type="text" id="søk" placeholder="søk her...">
+        <button type="submit" id="søkKnapp" onclick="søkToalett();">Søk</button>
+      </div>
+      <div class="søkstyle2">
+
+        <div class="container">
+          <h4>For avansert søk:</h4>
+          <div class="checkbox2" id="checkbox">
+            <div class="checkbox3">
+              <input type="checkbox" id="mann"> Herre
+              <input type="checkbox" id="dame"> Dame
+              <input type="checkbox" id="stellerom"> Stellerom <br>
+              <input type="checkbox" id="gratis"> Gratis
+              <input type="checkbox" id="rullestol"> Rullestol
+              <input type="checkbox" id="pissoir"> Pissoir
+
+            </div>
+            <button class="avansertknapp" type="button" onclick="checkboxSøk();">Avansert søk  </button>
           </div>
-          <div class="søkstyle2">
-
-             <div class="container">
-               <h4>For avansert søk:</h4>
-                <div class="checkbox2" id="checkbox">
-                   <div class="checkbox3">
-                      <input type="checkbox" id="mann"> Herre
-                      <input type="checkbox" id="dame"> Dame
-                      <input type="checkbox" id="stellerom"> Stellerom <br>
-                      <input type="checkbox" id="gratis"> Gratis
-                      <input type="checkbox" id="rullestol"> Rullestol
-                      <input type="checkbox" id="pissoir"> Pissoir
-
-                   </div>
-                   <button class="avansertknapp" type="button" onclick="checkboxSøk();">Avansert søk  </button>
-                </div>
-             </div>
-          </div>
-          <div class="header">
-          </div>
-          <div id="liste"></div>
-       </div>
-       <div id="map"></div>
+        </div>
+      </div>
+      <div class="header">
+      </div>
+      <div id="liste"></div>
     </div>
-    <script async defer
-       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjM2k_K1AyHUHMTfL_lRaj0gcAG3tHssQ&callback=initMap"></script>
-    <!-- Page content end -->
-    <!-- Footer start -->
-    <div class="copyright">
-       &copy; 2017 Uteliv Bergen. All rights reserved.
-    </div>
-  </body>
+    <div id="map"></div>
+  </div>
+
+  <!-- Page content end -->
+  <!-- Footer start -->
+  <div class="copyright">
+    &copy; 2017 Uteliv Bergen. All rights reserved.
+  </div>
+</body>
+
 </html>
