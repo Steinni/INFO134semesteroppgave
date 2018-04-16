@@ -1,4 +1,3 @@
-
 var toaletter;
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(){
@@ -12,7 +11,7 @@ xhr.onreadystatechange = function(){
 		}
 	}
 }
-xhr.open("GET","https://hotell.difi.no/api/json/bergen/dokart?");
+xhr.open("GET", "https://hotell.difi.no/api/json/bergen/dokart?");
 xhr.send();
 
 
@@ -28,7 +27,7 @@ function initialize() {
 
 
 
-
+	 var markers = [];
 
 	 	 /* søker igjennom json listen og henter ut posisjonen til toalettene ved
 	 	 å bruke latitude og longitude keyvalues
@@ -41,7 +40,8 @@ function initialize() {
 
 
 	      });
-
+				markers.push(marker);
+				
 	 		 // gjør markers klikkbare og åpner et infovindu på klikk som forteller toalett ID og plassering
 	 		 var infowindow = new google.maps.InfoWindow();
 	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -51,58 +51,49 @@ function initialize() {
 	        }
 	      })(marker, i));
 	    }
+		}
 
 
+		/*
+			Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
+			skal den filtrere json listen og genererer en ny liste basert på det som er avhuket
+
+		*/
+		function checkboxSøk(){
+			var json = toaletter.entries;
+			var liste = document.getElementById("liste");
+			liste.innerHTML= "";
+
+			if (document.getElementById("mann").checked){
+				 json = json.filter(toaletter => toaletter.herre != "NULL")
+			}
+			if (document.getElementById("gratis").checked){
+				json = json.filter(toaletter => toaletter.pris == "NULL" || toaletter.pris == "0")
+			}
+			if (document.getElementById("dame").checked){
+				json = json.filter(toaletter => toaletter.dame != "NULL")
+			}
+			if (document.getElementById("stellerom").checked){
+				json = json.filter(toaletter => toaletter.stellerom != "NULL")
+			}
+			if (document.getElementById("rullestol").checked){
+				json = json.filter(toaletter => toaletter.rullestol != "NULL" && toaletter.rullestol != "")
+			}
+			if (document.getElementById("pissoir").checked){
+				json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
+			}
+
+			for (var i = 0; i < json.length; i++){
+				var li = document.createElement("LI");
+				var ol = document.getElementById("liste");
+				li.innerHTML = (i+1) + ". " + toaletter.entries[i].plassering;
+				ol.appendChild(li);
 
 
-//Google Map end
+			}
 
+			if (liste.innerHTML == ""){
+				liste.innerHTML = "Beklager, ingen treff";
+			}
 
-
-
-
-
-/*
-	Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
-	skal den filtrere json listen og genererer en ny liste basert på det som er avhuket
-	-Steinn-Roar Valberg (SVA038), Daniel Henstein Olsen (DOL006)
-*/
-function checkboxSøk(){
-	var json = toaletter.entries;
-	var liste = document.getElementById("liste");
-	liste.innerHTML= "";
-
-	if (document.getElementById("mann").checked){
-		 json = json.filter(toaletter => toaletter.herre != "NULL")
-	}
-	if (document.getElementById("gratis").checked){
-		json = json.filter(toaletter => toaletter.pris == "NULL" || toaletter.pris == "0")
-	}
-	if (document.getElementById("dame").checked){
-		json = json.filter(toaletter => toaletter.dame != "NULL")
-	}
-	if (document.getElementById("stellerom").checked){
-		json = json.filter(toaletter => toaletter.stellerom != "NULL")
-	}
-	if (document.getElementById("rullestol").checked){
-		json = json.filter(toaletter => toaletter.rullestol != "NULL" && toaletter.rullestol != "")
-	}
-	if (document.getElementById("pissoir").checked){
-		json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
-	}
-
-	for (var i = 0; i < json.length; i++){
-		var li = document.createElement("LI");
-		var ol = document.getElementById("liste");
-		li.innerHTML = (i+1) + ". " + toaletter.entries[i].plassering;
-		ol.appendChild(li);
-
-
-	}
-
-	if (liste.innerHTML == ""){
-		liste.innerHTML = "Beklager, ingen treff";
-	}
-
-}
-}
+		}
