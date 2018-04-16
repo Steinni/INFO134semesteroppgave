@@ -1,0 +1,135 @@
+body {
+  background-color: #26495e;
+}
+/* -- Navigation bar start -- */
+/* NavBar background color */
+.topnav {
+  overflow: hidden;
+  background-color: #0e2f44; /* darkish blue */
+}
+/* NavBar link style */
+.topnav a {
+  float: left;
+  color: #f2f2f2; /* light grey */
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px
+}
+
+/* color of links on hover */
+.topnav a:hover {
+  background-color: #ddd; /* light grey */
+  color: black;
+}
+
+/* Add a color to the current link */
+.topnav a.active {
+  background-color: #b3680a; /* green */
+  color: white;
+}
+
+
+/* -- Section end --*/
+/* -- Copyright start -- */
+.copyright {
+  font-size: 8pt;
+  text-align: right;
+  padding-bottom: 10px;
+  color: grey;
+}
+
+
+#listebakgrunn {
+  display: flex;
+  flex-direction: row;
+
+}
+
+
+}
+
+#listebakgrunn2{
+  background: white;
+  margin: auto;
+  padding: 30px;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+
+#map {
+  margin: 10px 20px;
+  height: 400px;
+  width:45%;
+  align-self: center;
+}
+* {
+  box-sizing: border-box;
+}
+div.søkstyle input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 50%;
+  background: #f1f1f1;
+  flex-grow: 1;
+}
+
+
+div.søkstyle button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #0e2f44;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+div.søkstyle button:hover {
+  background: #0b7dda;
+}
+div.søkstyle::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+.avansertknapp {
+  width: 30;
+  padding: 10px;
+  background: #0e2f44;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+.checkboxKnapp {
+
+  background: #0e2f44;
+  color: white;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+div.søkstyle2 button:hover {
+  background: #0b7dda;
+}
+
+
+@media only screen and (max-width: 600px){
+  .container {
+    flex-wrap: wrap;
+  }
+}

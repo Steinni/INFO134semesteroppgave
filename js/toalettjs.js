@@ -67,6 +67,7 @@ for (var i = 0; i < toaletter.length; i++){
 } */
 
 }
+/*
 function checkboxToggle(){
 	var liste = document.getElementById("checkbox");
 	if (liste.style.display === "none"){
@@ -75,7 +76,7 @@ function checkboxToggle(){
 	else {
 		liste.style.display = "none";
 	}
-}
+}  
 
 /*
 	Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
