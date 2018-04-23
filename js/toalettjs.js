@@ -3,21 +3,33 @@ var toaletter;
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(){
 	if(xhr.status == 200 && xhr.readyState == 4){
-		toaletter = JSON.parse(xhr.response);
-		for (var i = 0; i < toaletter.entries.length; i++){
-			var li = document.createElement("LI");
-			var ol = document.getElementById("liste");
-			li.innerHTML = (i+1) + ". " + toaletter.entries[i].plassering;
-			ol.appendChild(li);
+		 toaletter = JSON.parse(xhr.responseText);
+		jsonListe(toaletter);
+
+
+		// for (var i = 0; i < toaletter.entries.length; i++){
+		// 	var li = document.createElement("LI");
+		// 	var ol = document.getElementById("liste");
+		// 	li.innerHTML = (i+1) + ". " + toaletter.entries[i].plassering;
+		// 	ol.appendChild(li);
 
 		}
 	}
-}
-xhr.open("GET", "https://hotell.difi.no/api/json/bergen/dokart?");
+
+xhr.open("GET", "https://hotell.difi.no/api/json/bergen/dokart?", true);
 xhr.send();
 
 
+function jsonListe(arr){
+	var output = "";
+	var i;
 
+	for (var i = 0; i < arr.entries.length; i++){
+		output += "<li>" + (i+1) + ". " + arr.entries[i].plassering + "</li>";
+	}
+
+	document.getElementById("liste").innerHTML = output;
+}
 
 
 function initialize() {
@@ -103,4 +115,7 @@ function initialize() {
 				liste.innerHTML = "Beklager, ingen treff";
 			}
 
-		}
+
+
+
+}
