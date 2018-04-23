@@ -1,3 +1,4 @@
+
 var toaletter;
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(){
@@ -8,11 +9,15 @@ xhr.onreadystatechange = function(){
 			var ol = document.getElementById("liste");
 			li.innerHTML = (i+1) + ". " + toaletter.entries[i].plassering;
 			ol.appendChild(li);
+
 		}
 	}
 }
 xhr.open("GET", "https://hotell.difi.no/api/json/bergen/dokart?");
 xhr.send();
+
+
+
 
 
 function initialize() {
@@ -21,32 +26,34 @@ function initialize() {
    var map = new google.maps.Map(document.getElementById('map'), {
      zoom: 14,
      center: new google.maps.LatLng(60.395025, 5.325094),
-     markers: []
+
    });
 
 
 
 
-	 var markers = [];
+
 
 	 	 /* søker igjennom json listen og henter ut posisjonen til toalettene ved
 	 	 å bruke latitude og longitude keyvalues
 	 	 */
 	    for (var i = 0; i < toaletter.entries.length; i++) {
+				var tJson = toaletter.entries[i];
 	      var marker = new google.maps.Marker({
-	        position: {lat: parseFloat(toaletter.entries[i].latitude), lng: parseFloat(toaletter.entries[i].longitude)},
+	        position: {lat: parseFloat(tJson.latitude), lng: parseFloat(tJson.longitude)},
 	        map: map,
-	 			 	label: toaletter.entries[i].id, 			// angir en label på markers med IDn til toalettene
-
+	 			 	label: tJson.id, 			// angir en label på markers med IDn til toalettene
+					title: tJson.plassering
 
 	      });
-				markers.push(marker);
-				
+
+
 	 		 // gjør markers klikkbare og åpner et infovindu på klikk som forteller toalett ID og plassering
+
 	 		 var infowindow = new google.maps.InfoWindow();
 	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	        return function() {
-	          infowindow.setContent(toaletter.entries[i].id + ". " + toaletter.entries[i].plassering);
+	          infowindow.setContent(tJson.id + ". " + tJson.plassering);
 	          infowindow.open(map, marker);
 	        }
 	      })(marker, i));
