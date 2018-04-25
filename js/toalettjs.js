@@ -123,3 +123,41 @@ function putMarker(map, id, plassering, location){
 
 
 }
+function hurtigSøk() {
+	var jason = toaletter.entries;
+	liste.innerHTML="";
+	var søkeTekst = document.getElementById("søk");
+	var søkeVerdi = søkeTekst.value;
+	var regEx1 = RegExp('mann|herre|gutt');
+	var regEx2 = RegExp('gratis|free');
+	var regEx3 = RegExp('dame|kvinne|jente');
+	var regEx4 = RegExp('stellerom|baby');
+	var regEx5 = RegExp('rullestol|handicap');
+	var regEx6 = RegExp('pissoir')
+
+			if (regEx1.test(søkeVerdi) == true){
+				 jason = jason.filter(toaletter => toaletter.herre != "NULL")
+			}
+			if (regEx2.test(søkeVerdi) == true){
+				jason = jason.filter(toaletter => toaletter.pris == "NULL" || toaletter.pris == "0")
+			}
+			if (regEx3.test(søkeVerdi) == true){
+				jason = jason.filter(toaletter => toaletter.dame != "NULL")
+			}
+			if (regEx4.test(søkeVerdi) == true){
+				jason = jason.filter(toaletter => toaletter.stellerom != "NULL")
+			}
+			if (regEx5.test(søkeVerdi) == true){
+				jason = jason.filter(toaletter => toaletter.rullestol != "NULL" && toaletter.rullestol != "")
+			}
+			if (regEx6.test(søkeVerdi) == true){
+				jason = jason.filter(toaletter => toaletter.pissoir_only != "NULL")
+			}
+
+		for (var i = 0; i < jason.length; i++){
+				var li = document.createElement("LI");
+				var ol = document.getElementById("liste");
+				li.innerHTML = (i+1) + ". " + toaletter.entries[i].plassering;
+				ol.appendChild(li);
+			}
+		}
