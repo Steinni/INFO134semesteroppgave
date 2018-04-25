@@ -8,9 +8,10 @@ var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(e){
   if(xhr.readyState ==4){
     if(xhr.status == 200){
-      callback(xhr.response)
+      var jsonFile = JSON.parse(xhr.responseText);
+      callback(jsonFile);
     }else{
-      callback(null)
+      callback(null);
     }
   }
 
