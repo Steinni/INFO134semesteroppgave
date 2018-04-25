@@ -1,6 +1,7 @@
-
+var url = "https://hotell.difi.no/api/json/bergen/dokart?";
 var toaletter;
 var xhr = new XMLHttpRequest();
+xhr.open("GET", url, true);
 xhr.onreadystatechange = function(){
 	if(xhr.status == 200 && xhr.readyState == 4){
 		 toaletter = JSON.parse(xhr.responseText);
@@ -15,8 +16,6 @@ xhr.onreadystatechange = function(){
 
 		}
 	}
-
-xhr.open("GET", "https://hotell.difi.no/api/json/bergen/dokart?", true);
 xhr.send();
 
 
@@ -29,9 +28,10 @@ function jsonListe(arr){
 	}
 
 	document.getElementById("liste").innerHTML = output;
+
 }
 
-
+var infowindow;
 function initialize() {
 
 
@@ -40,37 +40,41 @@ function initialize() {
      center: new google.maps.LatLng(60.395025, 5.325094),
 
    });
+	 var points = [];
+	 for (var i = 0; i < toaletter.entries.length; i++){
+		 var tJson = toaletter.entries[i];
+		 var location = new google.maps.LatLng(tJson.latitude, tJson.longitude);
+		 points.push(location);
+		  putMarker(map, tJson.id, tJson.plassering, location)
 
+	 }
+	 google.maps.event.addDomListener(window, 'load', initialize);
+}
 
+function putMarker(map, id, plassering, location){
+	var marker = new google.maps.Marker({
+		position: location,
+		map: map,
+		label: id,
+		title: plassering
+	});
 
+	google.maps.event.addListener(marker, 'click', function(){
+		if(typeof infowindow != 'undefined') infowindow.close();
+		infowindow = new google.maps.InfoWindow({
 
+		});
+		infowindow.setContent(id + ". " + plassering);
+		infowindow.open(map,marker);
+	});
+}
 
 
 	 	 /* søker igjennom json listen og henter ut posisjonen til toalettene ved
 	 	 å bruke latitude og longitude keyvalues
 	 	 */
-	    for (var i = 0; i < toaletter.entries.length; i++) {
-				var tJson = toaletter.entries[i];
-	      var marker = new google.maps.Marker({
-	        position: {lat: parseFloat(tJson.latitude), lng: parseFloat(tJson.longitude)},
-	        map: map,
-	 			 	label: tJson.id, 			// angir en label på markers med IDn til toalettene
-					title: tJson.plassering
-
-	      });
 
 
-	 		 // gjør markers klikkbare og åpner et infovindu på klikk som forteller toalett ID og plassering
-
-	 		 var infowindow = new google.maps.InfoWindow();
-	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-	        return function() {
-	          infowindow.setContent(tJson.id + ". " + tJson.plassering);
-	          infowindow.open(map, marker);
-	        }
-	      })(marker, i));
-	    }
-		}
 
 
 		/*
@@ -107,7 +111,7 @@ function initialize() {
 				var ol = document.getElementById("liste");
 				li.innerHTML = (i+1) + ". " + toaletter.entries[i].plassering;
 				ol.appendChild(li);
-
+				
 
 			}
 
