@@ -1,18 +1,12 @@
 var url = "https://hotell.difi.no/api/json/bergen/dokart?";
-var toaletter;
+let toaletter;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", url, true);
 xhr.onreadystatechange = function(){
 	if(xhr.status == 200 && xhr.readyState == 4){
 		 toaletter = JSON.parse(xhr.responseText);
 		jsonListe(toaletter);
-
-
-		// for (var i = 0; i < toaletter.entries.length; i++){
-		// 	var li = document.createElement("LI");
-		// 	var ol = document.getElementById("liste");
-		// 	li.innerHTML = (i+1) + ". " + toaletter.entries[i].plassering;
-		// 	ol.appendChild(li);
+		updateMarker();
 
 		}
 	}
@@ -30,45 +24,56 @@ function jsonListe(arr){
 	document.getElementById("liste").innerHTML = output;
 
 }
-
+var tJson;
+var map;
 var infowindow;
 function initialize() {
 
 
-   var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
      zoom: 14,
      center: new google.maps.LatLng(60.395025, 5.325094),
 
    });
-	 var points = [];
+
 	 for (var i = 0; i < toaletter.entries.length; i++){
-		 var tJson = toaletter.entries[i];
+		 tJson = toaletter.entries[i];
 		 var location = new google.maps.LatLng(tJson.latitude, tJson.longitude);
-		 points.push(location);
-		  putMarker(map, tJson.id, tJson.plassering, location)
+
+		  putMarker(map, tJson.id, tJson.plassering, location);
 
 	 }
 	 google.maps.event.addDomListener(window, 'load', initialize);
 }
-
+var markers = [];
 function putMarker(map, id, plassering, location){
-	var marker = new google.maps.Marker({
+	let marker = new google.maps.Marker({
 		position: location,
 		map: map,
 		label: id,
 		title: plassering
 	});
+	markers.push(marker);
 
 	google.maps.event.addListener(marker, 'click', function(){
 		if(typeof infowindow != 'undefined') infowindow.close();
-		infowindow = new google.maps.InfoWindow({
-
-		});
+		infowindow = new google.maps.InfoWindow();
 		infowindow.setContent(id + ". " + plassering);
 		infowindow.open(map,marker);
 	});
 }
 
+function removeMarker(){
+	markers.forEach(function(marker){
+		marker.setMap(null);
+	});
+}
+
+function updateMarker(){
+	removeMarker();
+
+
+}
 
 	 	 /* søker igjennom json listen og henter ut posisjonen til toalettene ved
 	 	 å bruke latitude og longitude keyvalues
@@ -111,7 +116,8 @@ function putMarker(map, id, plassering, location){
 				var ol = document.getElementById("liste");
 				li.innerHTML = (i+1) + ". " + toaletter.entries[i].plassering;
 				ol.appendChild(li);
-				
+
+				updateMarker();
 
 			}
 
