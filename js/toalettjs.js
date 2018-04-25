@@ -1,10 +1,13 @@
+
+
+let map;
 var url = "https://hotell.difi.no/api/json/bergen/dokart?";
 let toaletter;
 var xhr = new XMLHttpRequest();
 xhr.open("GET", url, true);
 xhr.onreadystatechange = function(){
 	if(xhr.status == 200 && xhr.readyState == 4){
-		 toaletter = JSON.parse(xhr.responseText);
+		 toaletter = JSON.parse(xhr.responseText).entries;
 		jsonListe(toaletter);
 		updateMarker();
 
@@ -12,20 +15,20 @@ xhr.onreadystatechange = function(){
 	}
 xhr.send();
 
-
 function jsonListe(arr){
 	var output = "";
 	var i;
 
-	for (var i = 0; i < arr.entries.length; i++){
-		output += "<li>" + (i+1) + ". " + arr.entries[i].plassering + "</li>";
+	for (var i = 0; i < arr.length; i++){
+		output += "<li>" + (i+1) + ". " + arr[i].plassering + "</li>";
 	}
 
 	document.getElementById("liste").innerHTML = output;
 
 }
-var tJson;
-var map;
+
+var json = [];
+//var markers = [];
 var infowindow;
 function initialize() {
 
@@ -33,62 +36,66 @@ function initialize() {
     map = new google.maps.Map(document.getElementById('map'), {
      zoom: 14,
      center: new google.maps.LatLng(60.395025, 5.325094),
-
+		 markers: []
    });
 
-	 for (var i = 0; i < toaletter.entries.length; i++){
-		 tJson = toaletter.entries[i];
-		 var location = new google.maps.LatLng(tJson.latitude, tJson.longitude);
+	 for (var i = 0; i < toaletter.length; i++){
+		 json = toaletter[i];
+	//	 var location = new google.maps.LatLng(json.latitude, json.longitude);
 
-		  putMarker(map, tJson.id, tJson.plassering, location);
+		 // putMarker(map, json.id, json.plassering, location);
+
+		 putMarker(map, json);
 
 	 }
 	 google.maps.event.addDomListener(window, 'load', initialize);
 }
-var markers = [];
-function putMarker(map, id, plassering, location){
-	let marker = new google.maps.Marker({
-		position: location,
-		map: map,
-		label: id,
-		title: plassering
-	});
-	markers.push(marker);
 
+
+function putMarker(map, json){
+
+	 let marker = new google.maps.Marker({
+		position: new google.maps.LatLng(json.latitude, json.longitude),
+		map: map,
+		label: json.id,
+		title: json.plassering
+
+	});
+	map.markers.push(marker);
+	//marker.setMap(map);
 	google.maps.event.addListener(marker, 'click', function(){
+
 		if(typeof infowindow != 'undefined') infowindow.close();
 		infowindow = new google.maps.InfoWindow();
-		infowindow.setContent(id + ". " + plassering);
+
+		infowindow.setContent("<b>" + json.id + ". " + json.plassering + "</b>" + "<br>" + json.adresse + "</br>");
 		infowindow.open(map,marker);
-	});
+});
 }
 
 function removeMarker(){
-	markers.forEach(function(marker){
+	map.markers.forEach(function(marker){
 		marker.setMap(null);
 	});
+	map.markers = [];
+
 }
 
 function updateMarker(){
 	removeMarker();
 
 
+
 }
-
-	 	 /* søker igjennom json listen og henter ut posisjonen til toalettene ved
-	 	 å bruke latitude og longitude keyvalues
-	 	 */
-
-
-
 
 		/*
 			Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
 			skal den filtrere json listen og genererer en ny liste basert på det som er avhuket
 
 		*/
+
 		function checkboxSøk(){
-			var json = toaletter.entries;
+			json = toaletter;
 			var liste = document.getElementById("liste");
 			liste.innerHTML= "";
 
@@ -114,7 +121,7 @@ function updateMarker(){
 			for (var i = 0; i < json.length; i++){
 				var li = document.createElement("LI");
 				var ol = document.getElementById("liste");
-				li.innerHTML = (i+1) + ". " + toaletter.entries[i].plassering;
+				li.innerHTML = (i+1) + ". " + json[i].plassering;
 				ol.appendChild(li);
 
 				updateMarker();
@@ -130,40 +137,40 @@ function updateMarker(){
 
 }
 function hurtigSøk() {
-	var jason = toaletter.entries;
+	json = toaletter;
 	liste.innerHTML="";
 	var søkeTekst = document.getElementById("søk");
 	var søkeVerdi = søkeTekst.value;
-	var regEx1 = RegExp('mann|herre|gutt');
+	var regEx1 = RegExp('mann|herre|gutt|');
 	var regEx2 = RegExp('gratis|free');
 	var regEx3 = RegExp('dame|kvinne|jente');
-	var regEx4 = RegExp('stellerom|baby');
+	var regEx4 = RegExp('stellerom|baby|stelle');
 	var regEx5 = RegExp('rullestol|handicap');
 	var regEx6 = RegExp('pissoir')
 
-			if (regEx1.test(søkeVerdi) == true){
-				 jason = jason.filter(toaletter => toaletter.herre != "NULL")
+			if (regEx1.test(søkeVerdi.toLowerCase()) == true){
+				 json = json.filter(toaletter => toaletter.herre != "NULL")
 			}
-			if (regEx2.test(søkeVerdi) == true){
-				jason = jason.filter(toaletter => toaletter.pris == "NULL" || toaletter.pris == "0")
+			if (regEx2.test(søkeVerdi.toLowerCase()) == true){
+				json = json.filter(toaletter => toaletter.pris == "NULL" || toaletter.pris == "0")
 			}
-			if (regEx3.test(søkeVerdi) == true){
-				jason = jason.filter(toaletter => toaletter.dame != "NULL")
+			if (regEx3.test(søkeVerdi.toLowerCase()) == true){
+				json = json.filter(toaletter => toaletter.dame != "NULL")
 			}
-			if (regEx4.test(søkeVerdi) == true){
-				jason = jason.filter(toaletter => toaletter.stellerom != "NULL")
+			if (regEx4.test(søkeVerdi.toLowerCase()) == true){
+				json = json.filter(toaletter => toaletter.stellerom != "NULL")
 			}
-			if (regEx5.test(søkeVerdi) == true){
-				jason = jason.filter(toaletter => toaletter.rullestol != "NULL" && toaletter.rullestol != "")
+			if (regEx5.test(søkeVerdi.toLowerCase()) == true){
+				json = json.filter(toaletter => toaletter.rullestol != "NULL" && toaletter.rullestol != "")
 			}
-			if (regEx6.test(søkeVerdi) == true){
-				jason = jason.filter(toaletter => toaletter.pissoir_only != "NULL")
+			if (regEx6.test(søkeVerdi.toLowerCase()) == true){
+				json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
 			}
 
-		for (var i = 0; i < jason.length; i++){
+		for (var i = 0; i < json.length; i++){
 				var li = document.createElement("LI");
 				var ol = document.getElementById("liste");
-				li.innerHTML = (i+1) + ". " + toaletter.entries[i].plassering;
+				li.innerHTML = (i+1) + ". " + json[i].plassering;
 				ol.appendChild(li);
 			}
 		}
