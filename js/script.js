@@ -34,5 +34,13 @@ function googleMaps(json) {
           label: tJson.id, 
           title: tJson.plassering 
         });
-     }
+     
+      var infowindow = new google.maps.InfoWindow();
+	   google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	     return function() {
+	     infowindow.setContent(tJson.id + ". " + tJson.plassering);
+	     infowindow.open(map, marker);
+	      }
+    })(marker, i));
+}
 }
