@@ -168,6 +168,7 @@ function hurtigSøk() {
 			}
 			else{
 				jason = [];
+				liste.innerHTML = "Beklager, ingen treff";
 			}
 		for (var i = 0; i < json.length; i++){
 				var li = document.createElement("LI");
