@@ -148,25 +148,27 @@ function hurtigSøk() {
 	var regEx5 = RegExp('rullestol|handicap');
 	var regEx6 = RegExp('pissoir')
 
-			if (regEx1.test(søkeVerdi.toLowerCase()) == true){
-				 json = json.filter(toaletter => toaletter.herre != "NULL")
+			if (regEx1.test(søkeVerdi) == true){
+				 jason = jason.filter(toaletter => toaletter.herre != "NULL")
 			}
-			if (regEx2.test(søkeVerdi.toLowerCase()) == true){
-				json = json.filter(toaletter => toaletter.pris == "NULL" || toaletter.pris == "0")
+			else if (regEx2.test(søkeVerdi) == true){
+				jason = jason.filter(toaletter => toaletter.pris == "NULL" || toaletter.pris == "0")
 			}
-			if (regEx3.test(søkeVerdi.toLowerCase()) == true){
-				json = json.filter(toaletter => toaletter.dame != "NULL")
+			else if (regEx3.test(søkeVerdi) == true){
+				jason = jason.filter(toaletter => toaletter.dame != "NULL")
 			}
-			if (regEx4.test(søkeVerdi.toLowerCase()) == true){
-				json = json.filter(toaletter => toaletter.stellerom != "NULL")
+			else if (regEx4.test(søkeVerdi) == true){
+				jason = jason.filter(toaletter => toaletter.stellerom != "NULL")
 			}
-			if (regEx5.test(søkeVerdi.toLowerCase()) == true){
-				json = json.filter(toaletter => toaletter.rullestol != "NULL" && toaletter.rullestol != "")
+			else if (regEx5.test(søkeVerdi) == true){
+				jason = jason.filter(toaletter => toaletter.rullestol != "NULL" && toaletter.rullestol != "")
 			}
-			if (regEx6.test(søkeVerdi.toLowerCase()) == true){
-				json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
+			else if (regEx6.test(søkeVerdi) == true){
+				jason = jason.filter(toaletter => toaletter.pissoir_only != "NULL")
 			}
-
+			else{
+				jason = [];
+			}
 		for (var i = 0; i < json.length; i++){
 				var li = document.createElement("LI");
 				var ol = document.getElementById("liste");
