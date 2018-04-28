@@ -147,8 +147,12 @@ function hurtigSøk() {
 	var regEx4 = RegExp('stellerom|baby|stelle');
 	var regEx5 = RegExp('rullestol|handicap');
 	var regEx6 = RegExp('pissoir')
-
-			if (regEx1.test(søkeVerdi) == true){
+			
+			if (søkeVerdi == "") {
+				jason;
+			}
+			
+			else if (regEx1.test(søkeVerdi) == true){
 				 jason = jason.filter(toaletter => toaletter.herre != "NULL")
 			}
 			else if (regEx2.test(søkeVerdi) == true){
@@ -166,7 +170,7 @@ function hurtigSøk() {
 			else if (regEx6.test(søkeVerdi) == true){
 				jason = jason.filter(toaletter => toaletter.pissoir_only != "NULL")
 			}
-			else{
+			else {
 				jason = [];
 				liste.innerHTML = "Beklager, ingen treff";
 			}
