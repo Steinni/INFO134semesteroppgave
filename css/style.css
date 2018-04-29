@@ -133,3 +133,9 @@ div.søkstyle2 button:hover {
     flex-wrap: wrap;
   }
 }
+
+#scrollbox {
+    overflow: scroll;
+    width: 400px;
+    height: 500px;
+}

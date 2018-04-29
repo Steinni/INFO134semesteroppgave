@@ -32,3 +32,33 @@ function requestJSON(url, callback){
     }
   }
     xhr.send();
+<<<<<<< HEAD
+=======
+  }
+
+function googleMaps(json) {
+
+     this.json = toaletter.entries;
+     	var map = new google.maps.Map(document.getElementById('map'), {
+         zoom: 14,
+         center: new google.maps.LatLng(60.395025, 5.325094), });
+
+     for (var i = 0; i < json.length; i++) {
+      	var tJson = toaletter.entries[i];
+     	 var marker = new google.maps.Marker({
+          position: {lat: parseFloat(tJson.latitude), lng: parseFloat(tJson.longitude)},
+          map: map,
+          label: tJson.id, 
+          title: tJson.plassering 
+        });
+     
+      var infowindow = new google.maps.InfoWindow();
+	   google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	     return function() {
+	     infowindow.setContent(tJson.id + ". " + tJson.plassering);
+	     infowindow.open(map, marker);
+	      }
+    })(marker, i));
+}
+}
+>>>>>>> 7d384cdc99847edc6b23cb132047b042c8aed781

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title></title>
+  <title>Lekeplasser i Bergen</title>
   <link rel="stylesheet" href="css/style.css">
   <script type="text/javascript" src="js/lekeplass.js"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjM2k_K1AyHUHMTfL_lRaj0gcAG3tHssQ&callback=initMap">
+    </script>
 </head>
 
-<body>
+<body onload="initialize();">
   <div class="topnav">
     <a href="index.html">Forside</a>
     <a href="toaletter.html">Toaletter</a>
@@ -17,10 +19,19 @@
   </div>
   <div id="listebakgrunn">
     <div id="listebakgrunn2">
-      <div id="liste">
+        <h2>Liste over lekeplasser i Bergen</h2>
+            <div class="søkstyle">
+               <input type="text" id="søk" placeholder="søk her..." >
+               <button type="submit" id="søkKnapp" onclick="hurtigSøk();">Søk</button>
+            </div>
+            <div id="scrollbox" class="søkstyle2">
+        <div id="liste">
       </div>
     </div>
+    <div id="map"></div>
+  </div>
+  <div class="copyright">
+    &copy; 2017 Uteliv Bergen. All rights reserved.
   </div>
 </body>
-
 </html>
