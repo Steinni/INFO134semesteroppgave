@@ -13,3 +13,9 @@ xhr.onreadystatechange = function(){
 }
 xhr.open("GET", "https://hotell.difi.no/api/json/bergen/lekeplasser?");
 xhr.send();
+
+function initialize() {
+   var map = new google.maps.Map(document.getElementById('map'), {
+     zoom: 10,
+     center: new google.maps.LatLng(60.395025, 5.325094), });
+}
