@@ -1,34 +1,71 @@
-
-
 let map;
-var url = "https://hotell.difi.no/api/json/bergen/dokart?";
-let toaletter;
-var xhr = new XMLHttpRequest();
-xhr.open("GET", url, true);
-xhr.onreadystatechange = function(){
-	if(xhr.status == 200 && xhr.readyState == 4){
-		 toaletter = JSON.parse(xhr.responseText).entries;
+
+
+// let map;
+// var url = "https://hotell.difi.no/api/json/bergen/dokart?";
+// let toaletter;
+// var xhr = new XMLHttpRequest();
+// xhr.open("GET", url, true);
+// xhr.onreadystatechange = function(){
+// 	if(xhr.status == 200 && xhr.readyState == 4){
+// 		 toaletter = JSON.parse(xhr.responseText).entries;
+// 		jsonListe(toaletter);
+// 		updateMarker();
+//
+// 		}
+// 	}
+// xhr.send();
+
+
+
+
+var toaletter;
+function requestJSON(url, callback){
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState == 4 && xhr.status == 200){
+      var responseJSON = JSON.parse(xhr.response);
+
+      callback(responseJSON);
+    } else  {
+      callback(null);
+    }
+  }
+
+    xhr.send();
+}
+
+
+
+
+
+requestJSON("https://hotell.difi.no/api/json/bergen/dokart?", function(response){
+	toaletter = response.entries;
 		jsonListe(toaletter);
-		updateMarker();
 
-		}
-	}
-xhr.send();
+});
 
-function jsonListe(arr){
+
+
+
+
+
+function jsonListe(array){
+
 	var output = "";
 	var i;
 
-	for (var i = 0; i < arr.length; i++){
-		output += "<li>" + (i+1) + ". " + arr[i].plassering + "</li>";
+	for (var i = 0; i < array.length; i++){
+		output += "<li>" + (i+1) + ". " + array[i].plassering + "</li>";
 	}
 
 	document.getElementById("liste").innerHTML = output;
 
 }
 
-var json = [];
-//var markers = [];
+var json;
+var markers = [];
 var infowindow;
 function initialize() {
 
@@ -36,7 +73,7 @@ function initialize() {
     map = new google.maps.Map(document.getElementById('map'), {
      zoom: 14,
      center: new google.maps.LatLng(60.395025, 5.325094),
-		 markers: []
+	//	 markers: []
    });
 
 	 for (var i = 0; i < toaletter.length; i++){
@@ -61,8 +98,8 @@ function putMarker(map, json){
 		title: json.plassering
 
 	});
-	map.markers.push(marker);
-	//marker.setMap(map);
+	markers.push(marker);
+	marker.setMap(map);
 	google.maps.event.addListener(marker, 'click', function(){
 
 		if(typeof infowindow != 'undefined') infowindow.close();
@@ -74,10 +111,10 @@ function putMarker(map, json){
 }
 
 function removeMarker(){
-	map.markers.forEach(function(marker){
+	markers.forEach(function(marker){
 		marker.setMap(null);
 	});
-	map.markers = [];
+	markers = [];
 
 }
 
@@ -87,6 +124,8 @@ function updateMarker(){
 
 
 }
+
+
 
 		/*
 			Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
