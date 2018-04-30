@@ -1,42 +1,81 @@
 
-
 let map;
-var url = "https://hotell.difi.no/api/json/bergen/dokart?";
-let toaletter;
-var xhr = new XMLHttpRequest();
-xhr.open("GET", url, true);
-xhr.onreadystatechange = function(){
-	if(xhr.status == 200 && xhr.readyState == 4){
-		 toaletter = JSON.parse(xhr.responseText).entries;
+
+
+// let map;
+// var url = "https://hotell.difi.no/api/json/bergen/dokart?";
+// let toaletter;
+// var xhr = new XMLHttpRequest();
+// xhr.open("GET", url, true);
+// xhr.onreadystatechange = function(){
+// 	if(xhr.status == 200 && xhr.readyState == 4){
+// 		 toaletter = JSON.parse(xhr.responseText).entries;
+// 		jsonListe(toaletter);
+// 		updateMarker();
+//
+// 		}
+// 	}
+// xhr.send();
+
+
+
+
+var toaletter;
+function requestJSON(url, callback){
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState == 4 && xhr.status == 200){
+      var responseJSON = JSON.parse(xhr.response);
+
+      callback(responseJSON);
+    } else  {
+      callback(null);
+    }
+  }
+
+    xhr.send();
+}
+
+
+
+
+
+requestJSON("https://hotell.difi.no/api/json/bergen/dokart?", function(response){
+	toaletter = response.entries;
 		jsonListe(toaletter);
-		updateMarker();
 
-		}
-	}
-xhr.send();
+});
 
-function jsonListe(arr){
+
+
+
+
+
+function jsonListe(obj){
+
 	var output = "";
 	var i;
 
-	for (var i = 0; i < arr.length; i++){
-		output += "<li>" + (i+1) + ". " + arr[i].plassering + "</li>";
+	for (var i = 0; i < obj.length; i++){
+		output += "<ul>" + (i+1) + ". " + obj[i].plassering + "</ul>";
 	}
 
 	document.getElementById("liste").innerHTML = output;
 
 }
 
-var json = [];
-//var markers = [];
+var json;
+var markers = [];
 var infowindow;
+
 function initialize() {
 
 
     map = new google.maps.Map(document.getElementById('map'), {
      zoom: 14,
      center: new google.maps.LatLng(60.395025, 5.325094),
-		 markers: []
+	//	 markers: []
    });
 
 	 for (var i = 0; i < toaletter.length; i++){
@@ -61,8 +100,8 @@ function putMarker(map, json){
 		title: json.plassering
 
 	});
-	map.markers.push(marker);
-	//marker.setMap(map);
+	markers.push(marker);
+	marker.setMap(map);
 	google.maps.event.addListener(marker, 'click', function(){
 
 		if(typeof infowindow != 'undefined') infowindow.close();
@@ -74,10 +113,10 @@ function putMarker(map, json){
 }
 
 function removeMarker(){
-	map.markers.forEach(function(marker){
+	markers.forEach(function(marker){
 		marker.setMap(null);
 	});
-	map.markers = [];
+	markers = [];
 
 }
 
@@ -86,7 +125,10 @@ function updateMarker(){
 
 
 
+
 }
+
+
 
 		/*
 			Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
@@ -119,14 +161,22 @@ function updateMarker(){
 			}
 
 			for (var i = 0; i < json.length; i++){
-				var li = document.createElement("LI");
-				var ol = document.getElementById("liste");
-				li.innerHTML = (i+1) + ". " + json[i].plassering;
-				ol.appendChild(li);
+				liste.innerHTML += "<ul>" + (i+1) + ". " + json[i].plassering + "</ul>";
+			}
+
+				// var output = "";
+				// var i;
+				//
+				// for (var i = 0; i < obj.length; i++){
+				// 	output += "<ul>" + (i+1) + ". " + obj[i].plassering + "</ul>";
+				// }
+				//
+				// document.getElementById("liste").innerHTML = output;
+
 
 				updateMarker();
 
-			}
+
 
 			if (liste.innerHTML == ""){
 				liste.innerHTML = "Beklager, ingen treff";
@@ -137,40 +187,49 @@ function updateMarker(){
 
 }
 function hurtigSøk() {
-	json = toaletter;
+	 json = toaletter;
 	liste.innerHTML="";
 	var søkeTekst = document.getElementById("søk");
 	var søkeVerdi = søkeTekst.value;
-	var regEx1 = RegExp('mann|herre|gutt|');
+	var regEx1 = RegExp('mann|herre|gutt');
 	var regEx2 = RegExp('gratis|free');
 	var regEx3 = RegExp('dame|kvinne|jente');
 	var regEx4 = RegExp('stellerom|baby|stelle');
-	var regEx5 = RegExp('rullestol|handicap');
+	var regEx5 = RegExp('rullestol|handicap|rulle|stol');
 	var regEx6 = RegExp('pissoir')
 
-			if (regEx1.test(søkeVerdi.toLowerCase()) == true){
-				 json = json.filter(toaletter => toaletter.herre != "NULL")
-			}
-			if (regEx2.test(søkeVerdi.toLowerCase()) == true){
-				json = json.filter(toaletter => toaletter.pris == "NULL" || toaletter.pris == "0")
-			}
-			if (regEx3.test(søkeVerdi.toLowerCase()) == true){
-				json = json.filter(toaletter => toaletter.dame != "NULL")
-			}
-			if (regEx4.test(søkeVerdi.toLowerCase()) == true){
-				json = json.filter(toaletter => toaletter.stellerom != "NULL")
-			}
-			if (regEx5.test(søkeVerdi.toLowerCase()) == true){
-				json = json.filter(toaletter => toaletter.rullestol != "NULL" && toaletter.rullestol != "")
-			}
-			if (regEx6.test(søkeVerdi.toLowerCase()) == true){
-				json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
+			if (søkeVerdi == "") {
+				json;
 			}
 
-		for (var i = 0; i < json.length; i++){
-				var li = document.createElement("LI");
-				var ol = document.getElementById("liste");
-				li.innerHTML = (i+1) + ". " + json[i].plassering;
-				ol.appendChild(li);
+			else if (regEx1.test(søkeVerdi.toLowerCase()) == true){
+				 json = json.filter(toaletter => toaletter.herre != "NULL")
 			}
-		}
+			else if (regEx2.test(søkeVerdi.toLowerCase()) == true){
+				json = json.filter(toaletter => toaletter.pris == "NULL" || toaletter.pris == "0")
+			}
+			else if (regEx3.test(søkeVerdi.toLowerCase()) == true){
+				json = json.filter(toaletter => toaletter.dame != "NULL")
+			}
+			else if (regEx4.test(søkeVerdi.toLowerCase()) == true){
+				json = json.filter(toaletter => toaletter.stellerom != "NULL")
+			}
+			else if (regEx5.test(søkeVerdi.toLowerCase()) == true){
+				json = json.filter(toaletter => toaletter.rullestol != "NULL" && toaletter.rullestol != "")
+			}
+			else if (regEx6.test(søkeVerdi.toLowerCase()) == true){
+				json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
+			}
+			else {
+				json = [];
+				liste.innerHTML = "Beklager, ingen treff";
+			}
+
+
+		for (var i = 0; i < json.length; i++){
+				var ul = document.createElement("ul");
+				var ol = document.getElementById("liste");
+				ul.innerHTML = (i+1) + ". " + json[i].plassering;
+				ol.appendChild(ul);
+			}
+}
