@@ -5,7 +5,7 @@ body {
 /* NavBar background color */
 .topnav {
   overflow: hidden;
-  background-color: #0e2f44; /* darkish blue */
+  background-color: #0e2f44;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 10px;
@@ -22,7 +22,7 @@ body {
 
 /* color of links on hover */
 .topnav a:hover {
-  background-color: #ddd; /* light grey */
+  background-color: #919EA5; /* light grey */
   color: black;
 }
 
@@ -44,15 +44,17 @@ body {
 
 
 .container2 {
-  width: 30%;
+  display: flex;
+  width: auto;
   background-color: #919EA5;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 10px;
 }
 #liste {
+
   background-color: #919EA5;
-  width: 30%;
+  width: auto;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 10px;
@@ -170,7 +172,7 @@ div.søkstyle2 button:hover {
 /* -- FlexBox start --*/
 .container {
   display: flex;
-  background-color: #fff;
+  background-color: #919EA5;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 10px;
@@ -214,28 +216,7 @@ div.søkstyle2 button:hover {
   flex: 85%;
 }
 /* -- Flex for indexPage --*/
-.indexcontainer {
-  display: flex;
-  background-color: #fff;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  flex-direction: column;
-}
 
-.indexchild1 {
-  order: 1;
-  margin: auto;
-}
-
-.indexchild2 {
-  order: 2;
-  text-align: center;
-}
-
-.indexchild3 {
-  order: 3;
-}
 
 @media only screen and (max-width: 600px){
   .container {
