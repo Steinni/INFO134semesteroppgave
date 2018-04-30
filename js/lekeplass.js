@@ -5,7 +5,7 @@ xhr.onreadystatechange = function(){
 		lekeplasser = JSON.parse(xhr.response);
 		for (var i = 0; i < lekeplasser.entries.length; i++){
 			var li = document.createElement("LI");
-			var ol = document.getElementById("liste");
+			var ol = document.getElementById("liste2");
 			li.innerHTML = (i+1) + ". " + lekeplasser.entries[i].navn;
 			ol.appendChild(li);
 		}
@@ -25,8 +25,8 @@ function initialize() {
      var marker = new google.maps.Marker({
         	position: {lat: parseFloat(tJson.latitude), lng: parseFloat(tJson.longitude)},
           	map: map,
-          	label: tJson.id, 
-          	title: tJson.plassering 
+          	label: tJson.id,
+          	title: tJson.plassering
         });
 
       	var infowindow = new google.maps.InfoWindow();

@@ -1,3 +1,4 @@
+
 let map;
 
 
@@ -51,13 +52,13 @@ requestJSON("https://hotell.difi.no/api/json/bergen/dokart?", function(response)
 
 
 
-function jsonListe(array){
+function jsonListe(obj){
 
 	var output = "";
 	var i;
 
-	for (var i = 0; i < array.length; i++){
-		output += "<li>" + (i+1) + ". " + array[i].plassering + "</li>";
+	for (var i = 0; i < obj.length; i++){
+		output += "<li>" + (i+1) + ". " + obj[i].plassering + "</li>";
 	}
 
 	document.getElementById("liste").innerHTML = output;
@@ -67,6 +68,7 @@ function jsonListe(array){
 var json;
 var markers = [];
 var infowindow;
+
 function initialize() {
 
 
@@ -120,6 +122,7 @@ function removeMarker(){
 
 function updateMarker(){
 	removeMarker();
+
 
 
 
@@ -186,11 +189,11 @@ function hurtigSøk() {
 	var regEx4 = RegExp('stellerom|baby|stelle');
 	var regEx5 = RegExp('rullestol|handicap');
 	var regEx6 = RegExp('pissoir')
-			
+
 			if (søkeVerdi == "") {
 				jason;
 			}
-			
+
 			else if (regEx1.test(søkeVerdi) == true){
 				 jason = jason.filter(toaletter => toaletter.herre != "NULL")
 			}

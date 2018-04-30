@@ -1,11 +1,14 @@
 body {
-  background-color: #26495e;
+  background-color: #6E828E;
 }
 /* -- Navigation bar start -- */
 /* NavBar background color */
 .topnav {
   overflow: hidden;
   background-color: #0e2f44; /* darkish blue */
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
 }
 /* NavBar link style */
 .topnav a {
@@ -40,6 +43,21 @@ body {
 }
 
 
+.container2 {
+  width: 30%;
+  background-color: #919EA5;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+#liste {
+  background-color: #919EA5;
+  width: 30%;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
 #listebakgrunn {
   display: flex;
   flex-direction:  column;
@@ -50,7 +68,7 @@ body {
 }
 
 #listebakgrunn2{
-  background: white;
+
   margin: auto;
   padding: 30px;
   width: 35%;
@@ -59,6 +77,15 @@ body {
   align-self: center;
 }
 
+#liste2{
+  background-color: #919EA5;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
 
 #map {
   margin: 10px 20px;
@@ -139,3 +166,80 @@ div.søkstyle2 button:hover {
     width: 400px;
     height: 500px;
 }
+
+/* -- FlexBox start --*/
+.container {
+  display: flex;
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+/* -- Flex for nightlifePage articles --*/
+.child1 {
+  margin: auto;
+  max-width: 100%;
+  width: 592px;
+  height: 313;
+  border-radius: 10px;
+  order: 1;
+  flex: auto;
+}
+
+.child2 {
+  order: 2;
+  margin: auto;
+  flex: 15%;
+}
+
+.child3 {
+  order: 3;
+  margin: auto;
+  flex: 85%;
+}
+
+.child4 {
+  margin: auto;
+  max-width: 100%;
+  width: 592px;
+  height: 313;
+  border-radius: 10px;
+  order: 3;
+  flex: auto;
+}
+
+.child5 {
+  order: 1;
+  margin: auto;
+  flex: 85%;
+}
+/* -- Flex for indexPage --*/
+.indexcontainer {
+  display: flex;
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  flex-direction: column;
+}
+
+.indexchild1 {
+  order: 1;
+  margin: auto;
+}
+
+.indexchild2 {
+  order: 2;
+  text-align: center;
+}
+
+.indexchild3 {
+  order: 3;
+}
+
+@media only screen and (max-width: 600px){
+  .container {
+    flex-wrap: wrap;
+  }
+}
+/* -- FlexBox end --*/

@@ -48,10 +48,10 @@ function googleMaps(json) {
      	 var marker = new google.maps.Marker({
           position: {lat: parseFloat(tJson.latitude), lng: parseFloat(tJson.longitude)},
           map: map,
-          label: tJson.id, 
-          title: tJson.plassering 
+          label: tJson.id,
+          title: tJson.plassering
         });
-     
+
       var infowindow = new google.maps.InfoWindow();
 	   google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	     return function() {
@@ -61,4 +61,3 @@ function googleMaps(json) {
     })(marker, i));
 }
 }
->>>>>>> 7d384cdc99847edc6b23cb132047b042c8aed781
