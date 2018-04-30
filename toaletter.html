@@ -1,64 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Toaletter i bergen</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script type="text/javascript" src="js/toalettjs.js"></script>
-    <script async defer
-       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjM2k_K1AyHUHMTfL_lRaj0gcAG3tHssQ&callback=initialize"></script>
-  </head>
-  <body onload="initialize();" onload="jsonListe();" onload="request();" onload="putMarkers();">
-    <!-- Header end -->
-      <!-- NavBar start -->
-    <div class="topnav">
-         <a href="index.html">Forside</a>
-         <a class="active" href="toaletter.html">Toaletter</a>
-         <a href="lekeplasser.html">Lekeplasser</a>
-      </div>
-      <!-- NavBar end -->
-      <!-- Page content start -->
-      <div id="listebakgrunn">
 
-         <div id="listebakgrunn2">
-            <h2>Liste over toaletter i Bergen</h2>
-            <div class="søkstyle">
-               <input type="text" id="søk" placeholder="søk her..." >
-               <button type="submit" id="søkKnapp" onclick="hurtigSøk();">Søk</button>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Toaletter i bergen</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/toalettjs.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjM2k_K1AyHUHMTfL_lRaj0gcAG3tHssQ&callback=initialize"></script>
+</head>
+
+<body onload="initialize();" onload="jsonListe();" onload="request();" onload="putMarkers();">
+  <!-- Header end -->
+  <!-- NavBar start -->
+  <div class="topnav">
+    <a href="index.html">Forside</a>
+    <a class="active" href="toaletter.html">Toaletter</a>
+    <a href="lekeplasser.html">Lekeplasser</a>
+    <a href="turer.html"> Presentasjon</a>
+  </div>
+  <!-- NavBar end -->
+  <!-- Page content start -->
+  <div id="listebakgrunn">
+
+    <div id="listebakgrunn2">
+      <h2>Liste over toaletter i Bergen</h2>
+      <div class="søkstyle">
+        <input type="text" id="søk" placeholder="søk her...">
+        <button type="submit" id="søkKnapp" onclick="hurtigSøk();">Søk</button>
+      </div>
+      <div class="søkstyle2">
+
+        <div class="container2">
+          <div class="checkbox2" id="checkbox">
+            <div class="checkbox3">
+              <input type="checkbox" id="mann"> Herre
+              <input type="checkbox" id="dame"> Dame
+              <input type="checkbox" id="stellerom"> Stellerom <br>
+              <input type="checkbox" id="gratis"> Gratis
+              <input type="checkbox" id="rullestol"> Rullestol
+              <input type="checkbox" id="pissoir"> Pissoir
+
             </div>
-            <div class="søkstyle2">
-
-               <div class="container2">
-                  <div class="checkbox2" id="checkbox">
-                     <div class="checkbox3">
-                        <input type="checkbox" id="mann"> Herre
-                        <input type="checkbox" id="dame"> Dame
-                        <input type="checkbox" id="stellerom"> Stellerom <br>
-                        <input type="checkbox" id="gratis"> Gratis
-                        <input type="checkbox" id="rullestol"> Rullestol
-                        <input type="checkbox" id="pissoir"> Pissoir
-
-                     </div>
-                     <button class="avansertknapp" type="button" onclick="checkboxSøk();">Avansert søk  </button>
-                  </div>
-                </div>
-              </div>
-              <div class="header">
-            </div>
-
-
-            <div id="liste"></div>
-         </div>
-
-         <div id="map"></div>
+            <button class="avansertknapp" type="button" onclick="checkboxSøk();">Avansert søk  </button>
+          </div>
+        </div>
+      </div>
+      <div class="header">
       </div>
 
-      <!-- Page content end -->
-      <!-- Footer start -->
-      <div class="copyright">
-         &copy; 2017 Uteliv Bergen. All rights reserved.
-      </div>
-      <!-- Footer end -->
-  </body>
+
+      <div id="liste"></div>
+    </div>
+
+    <div id="map"></div>
+  </div>
+
+  <!-- Page content end -->
+  <!-- Footer start -->
+  <div class="copyright">
+    &copy; 2017 Uteliv Bergen. All rights reserved.
+  </div>
+  <!-- Footer end -->
+</body>
+
 </html>

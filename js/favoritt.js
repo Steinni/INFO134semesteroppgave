@@ -22,8 +22,8 @@ function myoption(){
 	var selected = document.getElementById("lekeplassoption").value;
 	document.getElementById("favoritt").innerHTML = "Din valgte lekeplassen: " + selected;
 
-}
 
+}
 
 
 function calcDistance(lat1, long1, lat2, long2) {
