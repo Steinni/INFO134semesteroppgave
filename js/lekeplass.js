@@ -1,5 +1,6 @@
 var lekeplasser;
 var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://hotell.difi.no/api/json/bergen/lekeplasser?");
 xhr.onreadystatechange = function(){
 	if(xhr.status == 200 && xhr.readyState == 4){
 		lekeplasser = JSON.parse(xhr.response);
@@ -11,7 +12,7 @@ xhr.onreadystatechange = function(){
 		}
 	}
 }
-xhr.open("GET", "https://hotell.difi.no/api/json/bergen/lekeplasser?");
+
 xhr.send();
 
 function initialize() {

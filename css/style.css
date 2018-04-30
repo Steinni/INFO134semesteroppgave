@@ -62,7 +62,7 @@ body {
 
 #listebakgrunn {
   display: flex;
-
+  flex-wrap: wrap;
 
 }
 
@@ -91,11 +91,12 @@ body {
 
 
 #map {
-  flex-direction: column;
+
   display: block;
   height: 400px;
   width:500px;
-
+  align-self: center;
+  padding-left: 20px;
 }
 * {
   box-sizing: border-box;
@@ -161,6 +162,12 @@ div.søkstyle2 button:hover {
 
 @media only screen and (max-width: 600px){
   .container {
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .listebakgrunn {
     flex-wrap: wrap;
   }
 }
