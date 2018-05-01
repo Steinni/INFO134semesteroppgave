@@ -173,6 +173,9 @@ og oppdaterer kartet med nye markers.
 			if (document.getElementById("pissoir").checked){
 				json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
 			}
+      if (document.getElementById("åpen").checked){
+
+      }
 
 			for (var i = 0; i < json.length; i++){
 				liste.innerHTML += "<ul>" + (i+1) + ". " + json[i].plassering + "</ul>";
@@ -240,3 +243,54 @@ function hurtigSøk() {
 			}
       updateMarker();
 }
+
+
+
+
+function splitNparse(string) {								          // Funksjon til å splitte og parse toaletter.entries[i].tid_....
+    var tidString = string; 								            //Tar en json entry string
+    var splitString = tidString.split(/[.-]+/); 			  //Splitter string til ny array f.eks
+    var numbers = [];										                //"09.00 - 21.00" blir "09", "00", "21", "00"
+
+    	for(i = 0; i < splitString.length; i++) {			    //itererer gjennom ny array og parse string til int
+    	var num = parseInt(splitString[i], 10);				    //f. eks 9, 0, 21, 0 (dobbel null er unødvendig som int)
+    	numbers.push(num);
+
+    	}
+    console.log(splitString);								            //consolelogger string så man kan se det er rett.
+    return numbers;											                //returnerer int array.
+}
+
+
+function isOpen(json) {									           //	Funksjon for å se om toaletter.entries er åpne
+	var toilet = json;									               //Tar et json objekt
+	var date = new Date();									            //Bruker date funksjonen for å hente ut verdier
+	var open = false;									                 	//Binær variabel som tilsvarer open og stengt.
+
+
+
+
+
+		if (date.getDay() === 6) {							          //getDay: man = 1, tir = 2 ... søn = 0
+			var q = splitNparse(toilet.tid_lordag);
+			console.log(q);
+			if (date.getHours() >= q[0] && date.getHours() <= q[2]) {
+			open = true;
+			}
+		}
+		if (date.getDay() === 0) {
+			var q = splitNparse(toilet.tid_sondag);
+			console.log(q);
+			if (date.getHours() >= q[0] && date.getHours() <= q[2]) {
+			open = true;
+			}
+		}
+		else if (date.getDay() <= 5 && date.getDay() > 0) {
+			var q = splitNparse(toilet.tid_hverdag);
+			console.log(q);
+			if (date.getHours() >= q[0] && date.getHours() <= q[2]) {
+			open = true;
+			}
+		}
+	return open;
+  }

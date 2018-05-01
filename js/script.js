@@ -32,8 +32,6 @@ function requestJSON(url, callback){
     }
   }
     xhr.send();
-<<<<<<< HEAD
-=======
   }
 
 function googleMaps(json) {
@@ -81,17 +79,16 @@ function isOpen(toalett) {									//	Funksjon for å se om toaletter.entries er
 	var toilet = toalett;									//Tar et json objekt
 	var date = new Date();									//Bruker date funksjonen for å hente ut verdier
 	var open = false;										//Binær variabel som tilsvarer open og stengt.
-<<<<<<< HEAD
+
 
 		if (date.getDay() === 6) {
-=======
-		
-		if (date.getDay() === 6) {							//getDay: man = 1, tir = 2 ... søn = 0			
->>>>>>> 8f11622cc4e0239f4cf67d530e9c9ebf0528a705
+
+
+		if (date.getDay() === 6) {							//getDay: man = 1, tir = 2 ... søn = 0
 			var q = splitNparse(toilet.tid_lordag);
 			console.log(q);
 			if (date.getHours() >= q[0] && date.getHours() <= q[2]) {
-			open = true;	
+			open = true;
 			}
 		}
 		if (date.getDay() === 0) {
@@ -105,13 +102,9 @@ function isOpen(toalett) {									//	Funksjon for å se om toaletter.entries er
 			var q = splitNparse(toilet.tid_hverdag);
 			console.log(q);
 			if (date.getHours() >= q[0] && date.getHours() <= q[2]) {
-			open = true;			
+			open = true;
 			}
 		}
-<<<<<<< HEAD
-
-
-=======
 	return open;
->>>>>>> 8f11622cc4e0239f4cf67d530e9c9ebf0528a705
+  }
 }
