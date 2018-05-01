@@ -173,9 +173,17 @@ og oppdaterer kartet med nye markers.
 			if (document.getElementById("pissoir").checked){
 				json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
 			}
-      if (document.getElementById("åpen").checked){
-
-      }
+		     if (document.getElementById("åpen").checked){  		// Prøver å iterere gjennom json
+					var open = [];				// Og legger til i et array open
+					for (var i = 0; i < json.length; i++){
+						var q = isOpen(json[i]);
+						if (q["open"] = true) {
+							open.push(q);
+						}
+					}
+					open.push(json[13]);
+					json = open;
+				}						// gjør json til open
 
 			for (var i = 0; i < json.length; i++){
 				liste.innerHTML += "<ul>" + (i+1) + ". " + json[i].plassering + "</ul>";
