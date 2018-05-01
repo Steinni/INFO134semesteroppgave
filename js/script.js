@@ -63,7 +63,7 @@ function googleMaps(json) {
 }
 
 // ----------------------------------------------------------------------------------------------------------
-function splitNparse(string) {								// Funksjon til å splitte og parse toaletter.entries[i].tid_.... 
+function splitNparse(string) {								// Funksjon til å splitte og parse toaletter.entries[i].tid_....
     var tidString = string; 								//Tar en json entry string
     var splitString = tidString.split(/[.-]+/); 			//Splitter string til ny array f.eks
     var numbers = [];										//"09.00 - 21.00" blir "09", "00", "21", "00"
@@ -71,7 +71,7 @@ function splitNparse(string) {								// Funksjon til å splitte og parse toalet
     	for(i = 0; i < splitString.length; i++) {			//itererer gjennom ny array og parse string til int
     	var num = parseInt(splitString[i], 10);				//f. eks 9, 0, 21, 0 (dobbel null er unødvendig som int)
     	numbers.push(num);
-    
+
     	}
     console.log(splitString);								//consolelogger string så man kan se det er rett.
     return numbers;											//returnerer int array.
@@ -84,8 +84,8 @@ function isOpen(toalett) {									//	Funksjon for å se om toaletter.entries er
 	var hour = date.getHours();								//Timer
 	var minute = date.getMinutes();							//Minutter
 	var open = false;										//Binær variabel som tilsvarer open og stengt.
-		
-		if (date.getDay() === 6) {										
+
+		if (date.getDay() === 6) {
 			var q = splitNparse(toilet.tid_lordag);
 			console.log(q); // open = true;
 		}
@@ -97,6 +97,6 @@ function isOpen(toalett) {									//	Funksjon for å se om toaletter.entries er
 			var q = splitNparse(toilet.tid_hverdag);
 			console.log(q); // open = true;
 		}
-		
+
 
 }
