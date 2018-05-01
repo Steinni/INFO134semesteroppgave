@@ -62,7 +62,7 @@ function googleMaps(json) {
 }
 }
 
-// Kode for å se om toaletter.entries er åpne
+// ----------------------------------------------------------------------------------------------------------
 function splitNparse(string) {								// Funksjon til å splitte og parse toaletter.entries[i].tid_.... 
     var tidString = string; 								//Tar en json entry string
     var splitString = tidString.split(/[.-]+/); 			//Splitter string til ny array f.eks
