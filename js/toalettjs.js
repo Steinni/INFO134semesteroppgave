@@ -1,117 +1,124 @@
-
+var toaletter;
 let map;
 
+/**
+ oppgave 2
 
-// let map;
-// var url = "https://hotell.difi.no/api/json/bergen/dokart?";
-// let toaletter;
-// var xhr = new XMLHttpRequest();
-// xhr.open("GET", url, true);
-// xhr.onreadystatechange = function(){
-// 	if(xhr.status == 200 && xhr.readyState == 4){
-// 		 toaletter = JSON.parse(xhr.responseText).entries;
-// 		jsonListe(toaletter);
-// 		updateMarker();
-//
-// 		}
-// 	}
-// xhr.send();
+ Funksjonen requestJSON henter JSON fra url
+ som blir angitt.
+ Dataen blir tolket og returnerer til en callback
+ hvor den sjekker om requesten ble godkjent eller ikke.
+*/
 
-
-
-
-var toaletter;
-function requestJSON(url, callback){
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.onreadystatechange = function(){
-      if(xhr.readyState == 4 && xhr.status == 200){
-      var responseJSON = JSON.parse(xhr.response);
-
-      callback(responseJSON);
-    } else  {
-      callback(null);
-    }
+function requestJSON(url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if(xhr.readyState == 4 && xhr.status == 200) {
+      var contentType = xhr.getResponseHeader("Content-Type");
+        if(contentType.match(/application[/]json/)){
+        var jres = JSON.parse(xhr.response).entries;
+        callback(jres);
+      } else {
+        callback(null);
+      }
   }
-
-    xhr.send();
+}
+  xhr.open('GET', url, true);
+  xhr.send();
 }
 
-
-
-
-
-requestJSON("https://hotell.difi.no/api/json/bergen/dokart?", function(response){
-	toaletter = response.entries;
+/**
+Oppgave 3
+Bruker funksjonen fra oppgave 2 til å laste ned og tolke datasettet
+dokart i Bergen.
+Bruker funksjonen fra oppgave 4 til å generere nummerert liste for dokart
+*/
+requestJSON("https://hotell.difi.no/api/json/bergen/dokart?", function(res){
+	toaletter = res;
 		jsonListe(toaletter);
-
+    updateMarker();
 });
 
-
-
-
-
+/**
+Oppgave 4
+Funksjon som genererer en nummerert liste, hvor den tar inn et object
+som parameter.
+*/
 
 function jsonListe(obj){
-
-	var output = "";
-	var i;
-
-	for (var i = 0; i < obj.length; i++){
-		output += "<ul>" + (i+1) + ". " + obj[i].plassering + "</ul>";
-	}
-
-	document.getElementById("liste").innerHTML = output;
-
+  for (var i = 0; i < obj.length; i++){
+    var liste = document.getElementById("liste");
+    var ul = document.createElement("ul");
+    ul.innerHTML = (i+1) + ".  " + obj[i].plassering;
+    liste.appendChild(ul);
+  }
 }
-
+// Globale variabler
 var json;
 var markers = [];
-var infowindow;
+var InfoWindow;
 
+
+/**
+Funksjon som initialiserer Google maps.
+Bruker funksjon putMarker til å generere markers på kartet
+*/
 function initialize() {
 
 
     map = new google.maps.Map(document.getElementById('map'), {
      zoom: 14,
      center: new google.maps.LatLng(60.395025, 5.325094),
-	//	 markers: []
    });
 
-	 for (var i = 0; i < toaletter.length; i++){
-		 json = toaletter[i];
-	//	 var location = new google.maps.LatLng(json.latitude, json.longitude);
 
-		 // putMarker(map, json.id, json.plassering, location);
 
-		 putMarker(map, json);
 
-	 }
+     json = toaletter;
+     putMarker(json);
+
 	 google.maps.event.addDomListener(window, 'load', initialize);
 }
 
+/**
+Funksjon som legger til markers på kartet, og tar inn en parameter
+som bevarer koordinater, og putter dette inn i et markers array.
+Bruker funksjon removeMarker() til å tømme 'markers' array før nye markers blir satt
+*/
+function putMarker(json){
+  removeMarker();
+  json.forEach(function(tjson, i){
 
-function putMarker(map, json){
-
-	 let marker = new google.maps.Marker({
-		position: new google.maps.LatLng(json.latitude, json.longitude),
+	  let marker = new google.maps.Marker({
+	  position: {lat: parseFloat(tjson.latitude), lng: parseFloat(tjson.longitude)},
 		map: map,
-		label: json.id,
-		title: json.plassering
+		label: tjson.id,
+		title: tjson.plassering
 
 	});
-	markers.push(marker);
+	markers.push(marker); // legger markers inn i en liste.
 	marker.setMap(map);
-	google.maps.event.addListener(marker, 'click', function(){
 
-		if(typeof infowindow != 'undefined') infowindow.close();
-		infowindow = new google.maps.InfoWindow();
-
-		infowindow.setContent("<b>" + json.id + ". " + json.plassering + "</b>" + "<br>" + json.adresse + "</br>");
-		infowindow.open(map,marker);
+/**
+Legger til infovindu på markers.
+Sjekker om hvis et infovindu er åpen, lukker den infovinduet når man trykker på en ny marker,
+og åpner infovinduet for den klikte marker.
+*/
+infowindow = new google.maps.InfoWindow();
+  marker.addListener( 'click', (function(marker, i){
+    return function(){
+    if (typeof infowindow != 'undefined') infowindow.close();
+    infowindow.setContent("<b>" + (i+1) + ". " + tjson.plassering + "</b>" + "<br>" + tjson.adresse + "</br>");
+    infowindow.open(map, marker);
+  }
+  })(marker, i));
 });
 }
 
+
+/**
+Funksjon som fjerner markers fra kartet, og tømmer listen 'markers'.
+*/
 function removeMarker(){
 	markers.forEach(function(marker){
 		marker.setMap(null);
@@ -120,21 +127,27 @@ function removeMarker(){
 
 }
 
+/**
+Funksjon som oppdaterer kartet med nye markers.
+Bruker removeMarker() funksjon til å fjerne markers og tømme 'markers' listen,
+og putMarker() som tar json som et parameter for å oppdatere kartet med nye markers.
+
+*/
 function updateMarker(){
 	removeMarker();
 
-
+  putMarker(json);
 
 
 }
 
 
 
-		/*
-			Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
-			skal den filtrere json listen og genererer en ny liste basert på det som er avhuket
-
-		*/
+/**
+Funksjon som søker igjennom json variabelen og sjekker om et checkbox er avhuket,
+skal den så filtrere json listen og genererer en ny liste basert på det som er avhuket
+og oppdaterer kartet med nye markers.
+*/
 
 		function checkboxSøk(){
 			json = toaletter;
@@ -164,28 +177,20 @@ function updateMarker(){
 				liste.innerHTML += "<ul>" + (i+1) + ". " + json[i].plassering + "</ul>";
 			}
 
-				// var output = "";
-				// var i;
-				//
-				// for (var i = 0; i < obj.length; i++){
-				// 	output += "<ul>" + (i+1) + ". " + obj[i].plassering + "</ul>";
-				// }
-				//
-				// document.getElementById("liste").innerHTML = output;
-
-
-				updateMarker();
+		     updateMarker();
 
 
 
 			if (liste.innerHTML == ""){
 				liste.innerHTML = "Beklager, ingen treff";
 			}
-
-
-
-
 }
+
+
+/**
+
+*/
+
 function hurtigSøk() {
 	 json = toaletter;
 	liste.innerHTML="";
@@ -195,7 +200,7 @@ function hurtigSøk() {
 	var regEx2 = RegExp('gratis|free');
 	var regEx3 = RegExp('dame|kvinne|jente');
 	var regEx4 = RegExp('stellerom|baby|stelle');
-	var regEx5 = RegExp('rullestol|handicap|rulle|stol');
+	var regEx5 = RegExp('rullestol|handicap|rulle');
 	var regEx6 = RegExp('pissoir')
 
 			if (søkeVerdi == "") {
@@ -232,4 +237,5 @@ function hurtigSøk() {
 				ul.innerHTML = (i+1) + ". " + json[i].plassering;
 				ol.appendChild(ul);
 			}
+      updateMarker();
 }
