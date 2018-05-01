@@ -14,8 +14,9 @@ function requestJSON(url, callback) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if(xhr.readyState == 4 && xhr.status == 200) {
+      var appJson = "application/json";
       var contentType = xhr.getResponseHeader("Content-Type");
-        if(contentType.match(/application[/]json/)){
+        if(contentType.match(appJson)){
         var jres = JSON.parse(xhr.response).entries;
         callback(jres);
       } else {

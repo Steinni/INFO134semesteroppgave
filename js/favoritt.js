@@ -5,8 +5,9 @@ function requestJSON(url, callback) {
   xhr.open('GET', url, true);
   xhr.onreadystatechange = function() {
     if(xhr.readyState === 4 && xhr.status === 200) {
+			var appJson = "application/json";
 			var contentType = xhr.getResponseHeader("Content-Type");
-      if(contentType.match(/application[/]json/)) {
+      if(contentType.match(appJson)) {
         let jsonResponse = JSON.parse(xhr.response).entries;
         callback(jsonResponse);
       } else {
