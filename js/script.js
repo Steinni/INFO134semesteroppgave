@@ -80,20 +80,20 @@ function splitNparse(string) {								// Funksjon til å splitte og parse toalet
 function isOpen(toalett) {									//	Funksjon for å se om toaletter.entries er åpne
 	var toilet = toalett;									//Tar et json objekt
 	var date = new Date();									//Bruker date funksjonen for å hente ut verdier
-	var day = date.getDay();								//Dager; man = 1, tir = 2 ... søn = 0
+									//Dager; man = 1, tir = 2 ... søn = 0
 	var hour = date.getHours();								//Timer
 	var minute = date.getMinutes();							//Minutter
 	var open = false;										//Binær variabel som tilsvarer open og stengt.
 		
-		if (day.value = 6) {										
+		if (date.getDay() === 6) {										
 			var q = splitNparse(toilet.tid_lordag);
 			console.log(q); // open = true;
 		}
-		if (day.value = 0) {
+		if (date.getDay() === 0) {
 			var q = splitNparse(toilet.tid_sondag);
 			console.log(q); // open = true;
 		}
-		else if (day.value <= 5 && day.value > 0) {
+		else if (date.getDay() <= 5 && date.getDay() > 0) {
 			var q = splitNparse(toilet.tid_hverdag);
 			console.log(q); // open = true;
 		}
