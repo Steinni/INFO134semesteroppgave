@@ -6,22 +6,50 @@
   <meta name="viewport" content="width=device-width">
   <title>Turer i Norge</title>
   <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src="js/turer.js"></script>
+  <script type="text/javascript" src="js/presentasjon.js"></script>
 </head>
 
-<body onload="jsonListe();">
+<body>
   <!-- NavBar start -->
   <div class="topnav">
     <a href="index.html"> Forside</a>
     <a href="toaletter.html">Toaletter</a>
     <a href="lekeplasser.html">Lekeplasser</a>
     <a class="active" href="presentasjon.html"> Presentasjon </a>
-    <a href="minfavorittlekeplass.html">Min Favoritlekeplass<a/>
+    <a href="minfavorittlekeplass.html">Min Favoritlekeplass</a>
    </div>
     <!-- NavBar end -->
-    <h2>Liste over turer i Norge</h2>
-    <div id="turliste">
+    <div id="listebakgrunn">
+    <div id="listebakgrunn2">
+    <h2>Liste med diverse turer i Norge</h2>
+    <div class="søkstyle2">
 
+      <div class="container2">
+        <div class="checkbox2" id="checkbox">
+
+          <div class="checkbox3">
+            <h4>Huk av ønsket tur:</h4>
+            <input type="checkbox" id="fottur"> Fottur
+            <input type="checkbox" id="skogstur"> Skogstur
+            <input type="checkbox" id="hyttetur"> Hyttetur <br>
+            <input type="checkbox" id="padletur"> Padletur
+            <input type="checkbox" id="skitur"> Skitur
+            <input type="checkbox" id="trilletur"> Trilletur<br>
+            <input type="checkbox" id="topptur"> Topptur
+            <input type="checkbox" id="bærtur"> Bærtur
+            <input type="checkbox" id="fjelltur"> Fjelltur <br>
+            <input type="checkbox" id="sykkeltur"> Sykkeltur
+
+
+
+          </div>
+          <button class="avansertknapp" type="button" onclick="sortList();">Avansert søk  </button>
+        </div>
+      </div>
     </div>
+    <div id="liste">
+    </div>
+    </div>
+  </div>
   </body>
 </html>

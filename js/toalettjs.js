@@ -174,7 +174,7 @@ og oppdaterer kartet med nye markers.
 				json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
 			}
       if (document.getElementById("åpen").checked){
-
+			
       }
 
 			for (var i = 0; i < json.length; i++){

@@ -1,0 +1,245 @@
+{
+	"documents": [{
+		"_id": "524081f9b8cb77df15000fd3",
+		"tilbyder": "DNT",
+		"endret": "2014-06-01T17:08:18.663Z",
+		"status": "Offentlig",
+		"tags": ["Fottur"],
+		"lisens": "CC BY-NC 4.0",
+		"navn": "Vallresknuten - Skjult perletur fra Giljastølen"
+	}, {
+		"_id": "524081f9b8cb77df150007fa",
+		"status": "Offentlig",
+		"tags": ["Fottur"],
+		"tilbyder": "DNT",
+		"navn": "Stølstur til Helnaberg fra Stavali",
+		"endret": "2014-06-01T17:10:31.587Z",
+		"lisens": "CC BY-NC 4.0"
+	}, {
+		"_id": "524081f9b8cb77df1500008a",
+		"endret": "2014-06-01T17:12:06.837Z",
+		"status": "Offentlig",
+		"tags": ["Fottur", "Skogstur"],
+		"lisens": "CC BY-NC 4.0",
+		"navn": "To-Topp-Tur i Nordmarka ",
+		"tilbyder": "DNT"
+	}, {
+		"_id": "524081f9b8cb77df150009f3",
+		"status": "Offentlig",
+		"navn": "Stiløst til gåtefull stein ",
+		"lisens": "CC BY-NC 4.0",
+		"endret": "2014-06-01T17:12:09.855Z",
+		"tags": ["Fottur", "Skogstur"],
+		"tilbyder": "DNT"
+	}, {
+		"_id": "524081f9b8cb77df15000d23",
+		"tags": ["Fottur", "Skogstur", "Trilletur"],
+		"navn": "Tur til Lilloseter",
+		"endret": "2014-06-01T17:12:22.905Z",
+		"lisens": "CC BY-NC 4.0",
+		"tilbyder": "DNT",
+		"status": "Offentlig"
+	}, {
+		"_id": "524081f9b8cb77df150009f6",
+		"status": "Offentlig",
+		"navn": "Høgste havklippa i Europa",
+		"lisens": "CC BY-NC 4.0",
+		"tags": ["Fottur", "Fjelltur", "Topptur"],
+		"tilbyder": "DNT",
+		"endret": "2014-06-01T17:12:26.928Z"
+	}, {
+		"_id": "524081f9b8cb77df150009fa",
+		"tilbyder": "DNT",
+		"endret": "2014-06-01T17:12:28.047Z",
+		"lisens": "CC BY-NC 4.0",
+		"status": "Offentlig",
+		"navn": "Opplev ei natt ved Stadhavet",
+		"tags": ["Fottur", "Hyttetur"]
+	}, {
+		"_id": "524081f9b8cb77df1500051e",
+		"tilbyder": "DNT",
+		"lisens": "CC BY-NC 4.0",
+		"tags": ["Sykkeltur"],
+		"endret": "2014-06-01T17:12:32.959Z",
+		"status": "Offentlig",
+		"navn": "Rundt Jonsvatnet og gjennom Malvikmarka"
+	}, {
+		"_id": "524081f9b8cb77df150009b6",
+		"tags": ["Sykkeltur"],
+		"status": "Offentlig",
+		"navn": "Vassfjellet rundt på sykkel",
+		"tilbyder": "DNT",
+		"endret": "2014-06-01T17:12:33.792Z",
+		"lisens": "CC BY-NC 4.0"
+	}, {
+		"_id": "524081f9b8cb77df15000563",
+		"endret": "2014-06-01T17:12:33.797Z",
+		"tags": ["Skitur"],
+		"lisens": "CC BY-NC 4.0",
+		"navn": "Vintertur fra Ler til Heimdal",
+		"status": "Offentlig",
+		"tilbyder": "DNT"
+	}, {
+		"_id": "524081f9b8cb77df15000a68",
+		"endret": "2014-06-01T17:13:20.253Z",
+		"navn": "Overgangstur på Hinnøya",
+		"tilbyder": "DNT",
+		"lisens": "CC BY-NC 4.0",
+		"status": "Offentlig",
+		"tags": ["Fottur", "Hyttetur"]
+	}, {
+		"_id": "524081f9b8cb77df150001b2",
+		"tags": ["Fottur"],
+		"tilbyder": "DNT",
+		"navn": "Bratt tur til gården Hurrung",
+		"lisens": "CC BY-NC 4.0",
+		"endret": "2014-06-01T17:14:17.034Z",
+		"status": "Offentlig"
+	}, {
+		"_id": "524081f9b8cb77df15000d2c",
+		"navn": "Topptur til Fjellstulvarden. 786 meter",
+		"tags": ["Fottur", "Fjelltur", "Skogstur", "Topptur"],
+		"status": "Offentlig",
+		"tilbyder": "DNT",
+		"endret": "2014-06-01T17:14:59.131Z",
+		"lisens": "CC BY-NC 4.0"
+	}, {
+		"_id": "524081f9b8cb77df15000a12",
+		"endret": "2014-06-01T17:14:59.284Z",
+		"lisens": "CC BY-NC 4.0",
+		"status": "Offentlig",
+		"tags": ["Fottur", "Skogstur"],
+		"tilbyder": "DNT",
+		"navn": "Familietur til Høymyrvann"
+	}, {
+		"_id": "524081f9b8cb77df150002d2",
+		"lisens": "CC BY-NC 4.0",
+		"tags": ["Fottur", "Hyttetur"],
+		"navn": "Rundtur på Vikerfjell",
+		"tilbyder": "DNT",
+		"endret": "2014-06-01T17:15:55.062Z",
+		"status": "Offentlig"
+	}, {
+		"_id": "524081f9b8cb77df15000a10",
+		"endret": "2014-06-01T17:15:57.172Z",
+		"tilbyder": "DNT",
+		"lisens": "CC BY-NC 4.0",
+		"tags": ["Fottur", "Fjelltur"],
+		"status": "Offentlig",
+		"navn": "Opp Isdalen - ned Borgaskaret"
+	}, {
+		"_id": "524081f9b8cb77df15000b66",
+		"endret": "2014-06-01T17:20:07.351Z",
+		"status": "Offentlig",
+		"navn": "Enkel søndagstur over Knatten til Skomakerdiket",
+		"tags": ["Fottur"],
+		"tilbyder": "DNT",
+		"lisens": "CC BY-NC 4.0"
+	}, {
+		"_id": "524081f9b8cb77df15001018",
+		"navn": "Strøno rundt",
+		"tags": ["Padletur", "Kajakk"],
+		"tilbyder": "DNT",
+		"status": "Offentlig",
+		"endret": "2014-06-01T17:21:28.369Z",
+		"lisens": "CC BY-NC 4.0"
+	}, {
+		"_id": "524081f9b8cb77df1500095b",
+		"endret": "2014-06-01T17:21:28.730Z",
+		"status": "Offentlig",
+		"tilbyder": "DNT",
+		"lisens": "CC BY-NC 4.0",
+		"navn": "Trilletur til Rødlistova",
+		"tags": ["Fottur", "Trilletur"]
+	}, {
+		"_id": "524081f9b8cb77df1500025e",
+		"lisens": "CC BY-NC 4.0",
+		"navn": "Kanopadling i Hauglandsdalen",
+		"tags": ["Padletur", "Kano"],
+		"status": "Offentlig",
+		"tilbyder": "DNT",
+		"endret": "2014-06-01T17:21:29.016Z"
+	}, {
+		"_id": "524081f9b8cb77df15000eff",
+		"tags": ["Fottur", "Topptur"],
+		"tilbyder": "DNT",
+		"status": "Offentlig",
+		"navn": "Til toppen med det vakre namnet",
+		"endret": "2014-06-01T17:22:07.679Z",
+		"lisens": "CC BY-NC 4.0"
+	}, {
+		"_id": "524081f9b8cb77df1500103b",
+		"tags": ["Fottur", "Fjelltur", "Topptur"],
+		"endret": "2014-06-01T17:22:12.096Z",
+		"lisens": "CC BY-NC 4.0",
+		"status": "Offentlig",
+		"navn": "Livarden fra Bontveit",
+		"tilbyder": "DNT"
+	}, {
+		"_id": "524081f9b8cb77df15000830",
+		"navn": "Turøy rundt",
+		"lisens": "CC BY-NC 4.0",
+		"status": "Offentlig",
+		"tags": ["Padletur", "Kajakk"],
+		"tilbyder": "DNT",
+		"endret": "2014-06-01T17:26:55.873Z"
+	}, {
+		"_id": "524081f9b8cb77df15000d3d",
+		"navn": "Vardefjellet ved Kalandsvannet",
+		"tags": ["Fottur", "Bærtur", "Fjelltur", "Topptur"],
+		"tilbyder": "DNT",
+		"lisens": "CC BY-NC 4.0",
+		"status": "Offentlig",
+		"endret": "2014-06-01T17:26:59.425Z"
+	}, {
+		"_id": "524081f9b8cb77df15001117",
+		"tags": ["Skitur", "Langrenn"],
+		"tilbyder": "DNT",
+		"lisens": "CC BY-NC 4.0",
+		"navn": "På ski frå Gullingen til Kjetilstadlia",
+		"endret": "2014-06-01T17:28:09.015Z",
+		"status": "Offentlig"
+	}, {
+		"_id": "524081f9b8cb77df1500115e",
+		"tilbyder": "DNT",
+		"navn": "Osane-Solbrekk-Sandsa-Osane",
+		"lisens": "CC BY-NC 4.0",
+		"tags": ["Fottur", "Fjelltur"],
+		"endret": "2014-06-01T17:28:09.147Z",
+		"status": "Offentlig"
+	}, {
+		"_id": "524081f9b8cb77df150008b4",
+		"lisens": "CC BY-NC 4.0",
+		"navn": "Overnattingstur til Øvresaga",
+		"tilbyder": "DNT",
+		"tags": ["Fottur", "Skogstur"],
+		"status": "Offentlig",
+		"endret": "2014-06-01T17:28:27.639Z"
+	}, {
+		"_id": "524081f9b8cb77df15000b75",
+		"navn": "Blåmerket til Ullevålseter",
+		"tags": ["Fottur", "Skogstur"],
+		"tilbyder": "DNT",
+		"endret": "2014-06-01T17:28:31.821Z",
+		"lisens": "CC BY-NC 4.0",
+		"status": "Offentlig"
+	}, {
+		"_id": "524081f9b8cb77df1500166d",
+		"tags": ["Padletur", "Kajakk"],
+		"lisens": "CC BY-NC 4.0",
+		"tilbyder": "DNT",
+		"endret": "2014-06-01T17:32:02.404Z",
+		"status": "Offentlig",
+		"navn": "Selje til Vågsøy"
+	}, {
+		"_id": "524081f9b8cb77df1500162f",
+		"tags": ["Padletur", "Kajakk"],
+		"lisens": "CC BY-NC 4.0",
+		"status": "Offentlig",
+		"tilbyder": "DNT",
+		"endret": "2014-06-01T17:32:16.552Z",
+		"navn": "padling ved Glesvær"
+	}],
+	"count": 30,
+	"total": 12774
+}
