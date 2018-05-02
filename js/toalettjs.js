@@ -174,22 +174,18 @@ og oppdaterer kartet med nye markers.
 				json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
 			}
 <<<<<<< HEAD
-      if (document.getElementById("åpen").checked){
-			
-      }
-=======
-			     if (document.getElementById("åpen").checked){
+			if (document.getElementById("åpen").checked){
 				var open = [];
 
 				json.forEach(function(item) {
-					if (isOpen(item) === false) {
+					if (isOpen(item) != false) {
 						open.push(item);
 					}	
-
-				});
-				open.push(json[13]);
-				json = open;
-					}						// gjør json til open
+     				
+     			});
+     			
+     			json = open;	
+			}// gjør json til open
 >>>>>>> a79ce16f004e2b31123217dee1049f6d7206074e
 
 			for (var i = 0; i < json.length; i++){
@@ -220,7 +216,9 @@ function hurtigSøk() {
 	var regEx3 = RegExp('dame|kvinne|jente');
 	var regEx4 = RegExp('stellerom|baby|stelle');
 	var regEx5 = RegExp('rullestol|handicap|rulle');
-	var regEx6 = RegExp('pissoir')
+	var regEx6 = RegExp('pissoir');
+	var regEx7 = RegExp('åpen');
+	var regEx8 = RegExp('stengt');
 
 			if (søkeVerdi == "") {
 				json;
@@ -243,6 +241,24 @@ function hurtigSøk() {
 			}
 			else if (regEx6.test(søkeVerdi.toLowerCase()) == true){
 				json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
+			}
+			else if (regEx7.test(søkeVerdi.toLowerCase()) == true){
+						var open = [];
+					json.forEach(function(item) {
+						if (isOpen(item) != false) {
+							open.push(item);
+						}	
+					});
+					json = open;
+					}
+			else if (regEx8.test(søkeVerdi.toLowerCase()) == true){
+				var open = [];
+			json.forEach(function(item) {
+				if (isOpen(item) != true) {
+					open.push(item);
+				}
+			});
+			json = open;
 			}
 			else {
 				json = [];
