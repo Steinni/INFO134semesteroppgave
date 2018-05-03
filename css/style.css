@@ -32,15 +32,13 @@ body {
   color: white;
 }
 
-
-/* -- Section end --*/
-/* -- Copyright start -- */
-.copyright {
-  font-size: 8pt;
-  text-align: right;
-  padding-bottom: 10px;
-  color: grey;
+#tittel {
+  padding-right: 200px;
+  color: white;
+  
 }
+/* -- Section end --*/
+
 
 
 .container2 {
@@ -180,7 +178,7 @@ div.søkstyle2 button:hover {
 #scrollbox {
     overflow: scroll;
     width: 400px;
-    height: 500px;
+    height: 395px;
 }
 
 /* -- FlexBox start --*/

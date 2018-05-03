@@ -1,11 +1,12 @@
-var turer;
+let turer;
 
 function readJSON(file, callback){
 	var rawData = new XMLHttpRequest();
 	rawData.open("GET", file, true);
 	rawData.onreadystatechange = function(){
 		if (rawData.readyState == 4 && rawData.status == 200){
-			callback(rawData.responseText);
+			turer = JSON.parse(rawData.responseText).documents;
+			callback(turer);
 
 		}
 	}
@@ -13,27 +14,24 @@ function readJSON(file, callback){
 }
 tagsArr = [];
 readJSON("json/turer.json", function(text){
-	 turer = JSON.parse(text).documents;
+	 turer = text;
 
-	console.log(turer);
+//	console.log(turer);
 	lagListe(turer);
-	for (var i = 0; i < turer.length; i++){
-		for (var j = 0; j < turer[i].tags.length; j++){
-		//	console.log(turer[i].tags);
-		//	console.log(turer[i].tags[j]);
-			tagsArr.push(turer[i].tags[j]);
-			console.log(turer[i].tags[j]);
-		}
 
-		// var uniqueTags = tagsArr.filter(function(elem, pos){
-		// 	return tagsArr.indexOf(elem) == pos;
-		// });
-		// console.log(uniqueTags);
+	// for (var i = 0; i < turer.length; i++){
+	// 	for (var j = 0; j < turer[i].tags.length; j++){
+	// 	//	console.log(turer[i].tags);
+	// 	//	console.log(turer[i].tags[j]);
+	// 		tagsArr.push(turer[i].tags[j]);
+	// 	//	console.log(turer[i].tags[j]);
+	// 	}
 
-
-}
 });
 
+function sort1(){
+	sortList(turer);
+}
 
 function lagListe(obj){
 	for (var i = 0; i < obj.length; i++){

@@ -173,24 +173,24 @@ og oppdaterer kartet med nye markers.
 			if (document.getElementById("pissoir").checked){
 				json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
 			}
-<<<<<<< HEAD
+
       if (document.getElementById("åpen").checked){
-			
+
       }
-=======
+
 			     if (document.getElementById("åpen").checked){
 				var open = [];
 
 				json.forEach(function(item) {
 					if (isOpen(item) === false) {
 						open.push(item);
-					}	
+					}
 
 				});
 				open.push(json[13]);
 				json = open;
 					}						// gjør json til open
->>>>>>> a79ce16f004e2b31123217dee1049f6d7206074e
+
 
 			for (var i = 0; i < json.length; i++){
 				liste.innerHTML += "<ul>" + (i+1) + ". " + json[i].plassering + "</ul>";

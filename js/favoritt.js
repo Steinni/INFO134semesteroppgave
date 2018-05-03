@@ -8,8 +8,8 @@ function requestJSON(url, callback) {
 			var appJson = "application/json";
 			var contentType = xhr.getResponseHeader("Content-Type");
       if(contentType.match(appJson)) {
-        let jsonResponse = JSON.parse(xhr.response).entries;
-        callback(jsonResponse);
+        let jres = JSON.parse(xhr.response).entries;
+        callback(jres);
       } else {
         callback(null);
       }
@@ -23,7 +23,9 @@ window.onload = function() {
   requestJSON("https://hotell.difi.no/api/json/bergen/lekeplasser?", function(res) {
     lekeplass = res;
 
-
+  requestJSON("https://hotell.difi.no/api/json/bergen/dokart?", function(res){
+    toaletter = res;
+  });
 
 		jsonOption();
   });
@@ -31,7 +33,7 @@ window.onload = function() {
 }
 
 
-var option = document.getElementById("lekeplassoption");
+
 function jsonOption() {
 	var option = document.getElementById("lekeplassoption");
 	for(var i = 0; i < lekeplass.length; i++){
@@ -41,12 +43,15 @@ function jsonOption() {
 
 function myoption(){
 	var selected = document.getElementById("lekeplassoption").value;
-	document.getElementById("favoritt").innerHTML = "Din valgte lekeplass: " + selected;
+
+
+	document.getElementById("favoritt").innerHTML = "Din valgte lekeplass: " + selected + "<br>" +
+  "Nærmeste toalett: ";
 
 
 
 }
-
+}
 
 function calcDistance(lat1, lat2, long1, long2) {
   var x = Math.pow(lat1 - lat2, 2);
