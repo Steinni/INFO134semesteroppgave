@@ -184,9 +184,10 @@ og oppdaterer kartet med nye markers.
 					}
 
 				});
+				// Hardkodet toalett nr14 til å være åpen
 				open.push(json[13]);
-				json = open;
-				}						// gjør json til open
+				json = open;							// gjør json til open
+				}
 
 
 			for (var i = 0; i < json.length; i++){
@@ -247,9 +248,12 @@ function hurtigSøk() {
 						var open = [];
 					json.forEach(function(item) {
 						if (isOpen(item) != false) {
+
 							open.push(item);
 						}
 					});
+					//hardkodet toalett nr14 til å være åpen
+					open.push(json[13]);
 					json = open;
 					}
 			else if (regEx8.test(søkeVerdi.toLowerCase()) == true){
@@ -258,8 +262,13 @@ function hurtigSøk() {
 				if (isOpen(item) != true) {
 					open.push(item);
 				}
+
 			});
+			open.splice(json[13]);
 			json = open;
+			if(!json.length){
+				liste.innerHTML = "Ingen toaletter er stengt";
+			}
 			}
 			else {
 				json = [];
@@ -277,9 +286,12 @@ function hurtigSøk() {
 }
 
 
+/**
+	Funksjon til å splitte og parse toaletter[i].tid_hverdag/tid_lordag/tid_sondag
 
+*/
 
-function splitNparse(string) {								          // Funksjon til å splitte og parse toaletter.entries[i].tid_....
+function splitNparse(string) {
     var tidString = string; 								            //Tar en json entry string
     var splitString = tidString.split(/[.-]+/); 			  //Splitter string til ny array f.eks
     var numbers = [];										                //"09.00 - 21.00" blir "09", "00", "21", "00"
@@ -294,10 +306,10 @@ function splitNparse(string) {								          // Funksjon til å splitte og pa
 }
 
 
-function isOpen(json) {									           //	Funksjon for å se om toaletter.entries er åpne
-	var toilet = json;									               //Tar et json objekt
+function isOpen(json) {									           		//	Funksjon for å se om toaletter er åpne
+	var toilet = json;									               	//Tar et json objekt
 	var date = new Date();									            //Bruker date funksjonen for å hente ut verdier
-	var open = false;									                 	//Binær variabel som tilsvarer open og stengt.
+	var open = false;									                 	//Binær variabel som tilsvarer open og stengt, satt til false ved default.
 
 
 

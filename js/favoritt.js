@@ -50,7 +50,7 @@ function myoption(){
 
 
 
-}
+
 }
 
 function calcDistance(lat1, lat2, long1, long2) {

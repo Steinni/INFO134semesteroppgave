@@ -1,3 +1,15 @@
+/**
+Oppgave 10
+Ideen er å hente ut et dataset fra Nasjonal Turbase,
+men da den ikke er tilgjengelig for henting via URL,
+ble det valgt å lagre rundt 30 turer ut av litt over 12000
+i et JSON format, og åpne og lese dokumentet med XMLHttpRequest
+Videre er planen for at presentasjonen skal oppnå en
+ikke-triviell interaksjon skal brukeren kunne sortere turene
+etter hva slags tur det er.
+*/
+
+
 let turer;
 
 function readJSON(file, callback){
@@ -12,40 +24,35 @@ function readJSON(file, callback){
 	}
 	rawData.send(null);
 }
-tagsArr = [];
-readJSON("json/turer.json", function(text){
-	 turer = text;
 
-//	console.log(turer);
+readJSON("json/turer.json", function(text){
+	turer = text;
+
+	console.log(turer);
 	lagListe(turer);
 
-	// for (var i = 0; i < turer.length; i++){
-	// 	for (var j = 0; j < turer[i].tags.length; j++){
-	// 	//	console.log(turer[i].tags);
-	// 	//	console.log(turer[i].tags[j]);
-	// 		tagsArr.push(turer[i].tags[j]);
-	// 	//	console.log(turer[i].tags[j]);
-	// 	}
+
+	turer.forEach(function(entry){
+	//	console.log(entry.tags);
+
+	});
 
 });
 
-function sort1(){
-	sortList(turer);
-}
 
 function lagListe(obj){
 	for (var i = 0; i < obj.length; i++){
-	var liste = document.getElementById("liste");
-	var ul = document.createElement("ul");
-	ul.innerHTML = (i+1) + ". " + obj[i].navn;
-	liste.appendChild(ul);
-}
+		var liste = document.getElementById("liste");
+		var ul = document.createElement("ul");
+		ul.innerHTML = (i+1) + ". " + obj[i].navn;
+		liste.appendChild(ul);
+	}
 }
 
 
 
 function sortList(){
-	var json = turer;
+
 	var liste = document.getElementById("liste");
 	liste.innerHTML= "";
 
@@ -53,40 +60,6 @@ function sortList(){
 
 
 
-	if (document.getElementById("fottur").checked){
-		 json = turer.filter(json=> turer.tags == "fottur")
-	}
-	if (document.getElementById("skogstur").checked){
-		json = json.filter(json => turer.tags == "skogstur")
-	}
-	if (document.getElementById("hyttetur").checked){
-		json = json.filter(json => turer.tags == "hyttetur")
-	}
-	if (document.getElementById("trilletur").checked){
-		json = json.filter(json => turer.tags == "trilletur")
-	}
-	if (document.getElementById("padletur").checked){
-		json = json.filter(json => turer.tags == "padletur")
-	}
-	if (document.getElementById("skitur").checked){
-		json = json.filter(json => turer.tags == "skitur")
-	}
-	if (document.getElementById("topptur").checked){
-		json = json.filter(json => turer.tags == "topptur")
-	}
-	if (document.getElementById("bærtur").checked){
-		json = json.filter(json => turer.tags == "bærtur")
-	}
-	if (document.getElementById("fjelltur").checked){
-		json = json.filter(json => turer.tags == "fjelltur")
-	}
-	if (document.getElementById("sykkeltur").checked){
-		json = json.filter(json => turer.tags == "sykkeltur")
-	}
-	for (var i = 0; i < json.length; i++){
-		liste.innerHTML += "<ul>" + (i+1) + ". " + json[i].navn + "</ul>";
-	}
-	if (liste.innerHTML == ""){
-		liste.innerHTML = "Beklager, ingen treff";
-	}
+
+
 }
